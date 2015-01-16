@@ -1,3 +1,4 @@
+
 (function () {
 
   'use strict';
@@ -8,7 +9,7 @@
       
       initialize: function () {
         _.bindAll(this, 'setClasses');
-        console.debug('MyOD!');
+
         this.listenTo(App.searchModel, 'change:q', this.onQueryChanged);
       },
 
@@ -56,7 +57,7 @@
         App.navigate(route, { trigger:true });
       },
 
-      setClasses: function (router, route, params) {
+      setClasses: function () {
         var self = this;
         if (Backbone.history.getFragment().indexOf('datasets') === 0) {
           self.$el.removeClass('page-home');

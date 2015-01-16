@@ -1,3 +1,4 @@
+
 (function () {
 
   'use strict';
@@ -20,7 +21,7 @@
 
       getRoute: function (api) {
         var obj = _.pick(this.toJSON(), this.queryStringParams);
-        var route = 'datasets'
+        var route = 'datasets';
         route += (api) ? '.json?' : '?';
         route += $.param(obj);
         return route;

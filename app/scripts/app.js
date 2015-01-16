@@ -1,4 +1,4 @@
-/*global MyOD */
+/*jshint -W020 */
 
 if (!this.MyOD || typeof this.MyOD !== 'object') {
   this.MyOD = {};
@@ -25,7 +25,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
   MyOD.navigate = function (route, options) {
     Backbone.history.navigate(route, options);
-  }
+  };
 
   MyOD.queryStringToJSON = function () {            
     var pairs = location.search.slice(1).split('&');
@@ -37,6 +37,6 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
     });
 
     return JSON.parse(JSON.stringify(result));
-  }
+  };
 
 })();

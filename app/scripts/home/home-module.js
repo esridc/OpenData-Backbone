@@ -1,4 +1,3 @@
-/*global Composer */
 
 (function () {
     

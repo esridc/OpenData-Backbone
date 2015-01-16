@@ -1,3 +1,4 @@
+
 (function () {
 
   'use strict';
@@ -79,7 +80,7 @@
         var searchModel = this.model.clone();
         var active;
         for (var i = start; i <= end; i++) {
-          active = (i == from) ? 'active' : '';
+          active = (i === from) ? 'active' : '';
           searchModel.set('page', i);
           pages.push({ url: searchModel.getRoute(false), page: i, active: active });
         }
@@ -96,8 +97,8 @@
         }
 
         return {
-          firstPage: (from == 1) ? 'disabled' : '',
-          lastPage: (total_pages == from) ? 'disabled' : '',
+          firstPage: (from === 1) ? 'disabled' : '',
+          lastPage: (total_pages === from) ? 'disabled' : '',
           prevUrl: prevUrl,
           nextUrl: nextUrl,
           pages: pages
