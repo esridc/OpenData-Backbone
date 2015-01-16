@@ -1,0 +1,29 @@
+<h2>Your search for <em><%= q %></em> yielded <%= total_count %> datasets</h2>
+<div class="table-responsive">  
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>OWNER</th>
+        <th>RECORDS</th>
+        <th>VIEWS</th>
+        <th>CREATED</th>
+        <th>UPDATED</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<nav>
+  <ul class="pagination">
+    <% if (pages.length > 1) { %>
+      <li id="page-prev" class="<%= firstPage %>"><a href="<%= prevUrl %>"><span aria-hidden="true">&laquo;</span></a></li>
+      
+      <% _.each(pages, function (page) { %>
+        <li class="<%= page.active %>"><a href="<%= page.url %>" class="page-number" data-page="<%= page.page %>"><%= page.page %></a></li>
+      <% }); %>
+
+      <li id="page-next" class="<%= lastPage %>"><a href="<%= nextUrl %>"><span aria-hidden="true">&raquo;</span></a></li>
+    <% } %>
+  </ul>
+</nav>

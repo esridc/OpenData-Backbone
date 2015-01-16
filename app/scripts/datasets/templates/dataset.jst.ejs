@@ -1,0 +1,29 @@
+<h2 class="clearfix"><img class="left" src="<%= thumbnail_url %>"><span class="left"><%= name %></span></h2>
+
+<dl class="dl-horizontal">
+  
+  <dt>Description:</dt>
+  <dd><%= description %></dd>
+  
+  <dt>Owner:</dt>
+  <dd><%= owner %></dd>
+
+  <dt>Created:</dt>
+  <dd><%= moment(created_at).calendar() %></dd>
+  
+  <dt>Updated:</dt>
+  <dd><%= moment(updated_at).calendar() %></dd>
+
+  <dt>Metadata:</dt>
+  <dd><a href="<%= arcgis_online_item_url %>"><%= arcgis_online_item_url %></a></dd>
+  
+  <dt>Url:</dt>
+  <dd><a href="<%= url %>"><%= url %></a></dd>
+
+  <dt>Tags:</dt>
+  <dd><%= tags.join(' | ') %></dd>
+  
+  <dt>Views:</dt>
+  <dd><%= views %></dd>
+
+</dl>
