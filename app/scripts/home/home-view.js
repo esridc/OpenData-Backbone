@@ -56,8 +56,7 @@
       },
 
       search: function () {
-        var route = this.model.getRoute();
-        App.navigate(route, { trigger:true });
+        App.search();
       }
 
     });

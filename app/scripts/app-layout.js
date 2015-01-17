@@ -53,8 +53,7 @@
       },
 
       search: function () {
-        var route = App.searchModel.getRoute();
-        App.navigate(route, { trigger:true });
+        App.search();
       },
 
       setClasses: function () {

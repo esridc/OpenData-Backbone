@@ -27,6 +27,11 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
     Backbone.history.navigate(route, options);
   };
 
+  MyOD.search = function (options) {
+    var route = MyOD.searchModel.getRoute();
+    MyOD.navigate(route, { trigger:true });
+  };
+
   MyOD.queryStringToJSON = function () {            
     var pairs = location.search.slice(1).split('&');
     
