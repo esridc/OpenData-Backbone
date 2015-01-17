@@ -66,7 +66,7 @@
         var info = App.searchModel.toJSON();
 
         var len = Math.round(info.total_count);
-        var page = info.page;
+        var page = +info.page;
         var from = (page === 0) ? page + 1 : page;
         var size = info.per_page;
         var total_pages = Math.ceil(len / size);
