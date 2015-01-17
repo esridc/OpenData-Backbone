@@ -16,7 +16,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
   MyOD.on('start', function(options){
     if (Backbone.history){
-      Backbone.history.start({ pushState: Modernizr.history });
+      Backbone.history.start({ pushState: Modernizr.history, root: '/OpenData-Backbone' });
     }
 
     Backbone.history.on('route', this.appLayout.setClasses);
