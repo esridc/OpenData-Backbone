@@ -9,51 +9,13 @@
       
       initialize: function () {
         _.bindAll(this, 'setClasses');
-
-        this.listenTo(App.searchModel, 'change:q', this.onQueryChanged);
+        this.headerSearchView = new Main.HeaderSearchView().render();
       },
 
       el: 'body',
 
       regions: {
         main: '#main-region'
-      },
-
-      events: {
-        'keydown #header-search': 'onKeyDown',
-        'keyup #header-search': 'onKeyUp',
-        'click #header-search-btn': 'search'
-      },
-
-      onQueryChanged: function () {
-        this.$('#header-search').val(App.searchModel.get('q'));
-      },
-
-      onKeyDown:function(e){
-        if (e.which === 13) {
-          e.preventDefault();
-
-          var q = this.$('#header-search').val();
-
-          App.searchModel.set({
-            q: q,
-            page: 1
-          });
-
-          this.search();
-        }
-      },
-
-      onKeyUp: function () {
-        var q = this.$('#header-search').val();
-        App.searchModel.set({
-          q: q,
-          page: 1
-        });
-      },
-
-      search: function () {
-        App.search();
       },
 
       setClasses: function () {

@@ -27,7 +27,7 @@
 
     <div class="container">
       <div class="header">
-        <form class="navbar-form navbar-right" role="search">
+        <form id="header-search-container" class="navbar-form navbar-right" role="search">
           <div class="input-group">
             <label class="sr-only" for="header-search">Search</label>
             <input type="search" name="header-search" id="header-search" class="form-control" placeholder="search">
@@ -91,9 +91,11 @@
 
         <!-- build:js scripts/main.js -->        
         <script src="scripts/app.js"></script>
+        <script src="scripts/base/search-view.js"></script>
         <script src="scripts/entities/search-model.js"></script>
         <script src="scripts/app-config.js"></script>
         <script src="scripts/compiled-templates.js"></script>
+        <script src="scripts/header-search-view.js"></script>
         <script src="scripts/app-layout.js"></script>
         <script src="scripts/home/home-view.js"></script>
         <script src="scripts/home/home-controller.js"></script>

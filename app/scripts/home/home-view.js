@@ -8,7 +8,7 @@
     /**
      * Home controller for the main page of the application
      */
-    HomeModule.View = Marionette.ItemView.extend({ 
+    HomeModule.View = MyOD.Base.SearchView.extend({ 
 
       initialize: function () {
         this.model = App.searchModel;   
@@ -30,33 +30,6 @@
 
       onDomRefresh: function () {
         this.ui.search.focus();
-      },
-
-      onKeyDown:function(e){
-        if (e.which === 13) {
-          e.preventDefault();
-
-          var q = this.ui.search.val();
-
-          this.model.set({
-            q: q,
-            page: 1
-          });
-
-          this.search();
-        }
-      },
-
-      onKeyUp: function () {
-        var q = this.ui.search.val();
-        this.model.set({
-          q: q,
-          page: 1
-        });
-      },
-
-      search: function () {
-        App.search();
       }
 
     });
