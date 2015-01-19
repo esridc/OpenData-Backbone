@@ -54,7 +54,7 @@
         if(!(e.metaKey || e.ctrlKey)){
           e.stopPropagation();
           e.preventDefault();
-          var page = $(e.target).data('page');
+          var page = $(e.target).closest('a').data('page');
           var model = App.searchModel.clone();
           model.set('page', page);
           App.navigate(model.getRoute(false), { trigger: true });
@@ -86,13 +86,17 @@
         }
 
         var prevUrl = this.model.getRoute(false);
+        var prevPage = page;
         if (from !== 1) { 
-          searchModel.set('page', page-1);
+          prevPage = page-1;
+          searchModel.set('page', prevPage);
           prevUrl = searchModel.getUrl();
         }
         var nextUrl = this.model.getRoute(false);
+        var nextPage = page;
         if (total_pages !== from) {
-          searchModel.set('page', page+1);
+          nextPage = page + 1;
+          searchModel.set('page', nextPage);
           nextUrl = searchModel.getUrl();
         }
 
@@ -101,6 +105,8 @@
           lastPage: (total_pages === from) ? 'disabled' : '',
           prevUrl: prevUrl,
           nextUrl: nextUrl,
+          prevPage: prevPage,
+          nextPage: nextPage,
           pages: pages
         };
       }

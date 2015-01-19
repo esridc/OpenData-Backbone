@@ -76,6 +76,8 @@ __p += '\n      <li id="page-prev" class="' +
 ((__t = ( firstPage )) == null ? '' : __t) +
 '"><a href="' +
 ((__t = ( prevUrl )) == null ? '' : __t) +
+'" data-page="' +
+((__t = ( prevPage )) == null ? '' : __t) +
 '"><span aria-hidden="true">&laquo;</span></a></li>\n      \n      ';
  _.each(pages, function (page) { ;
 __p += '\n        <li class="' +
@@ -92,6 +94,8 @@ __p += '\n\n      <li id="page-next" class="' +
 ((__t = ( lastPage )) == null ? '' : __t) +
 '"><a href="' +
 ((__t = ( nextUrl )) == null ? '' : __t) +
+'" data-page="' +
+((__t = ( nextPage )) == null ? '' : __t) +
 '"><span aria-hidden="true">&raquo;</span></a></li>\n    ';
  } ;
 __p += '\n  </ul>\n</nav>';
