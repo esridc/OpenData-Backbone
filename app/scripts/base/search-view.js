@@ -4,10 +4,7 @@
   'use strict';
     
   MyOD.module('Base', function (Base, App, Backbone, Marionette, $, _) {
-          
-    /**
-     * Home controller for the main page of the application
-     */
+
     Base.SearchView = Marionette.ItemView.extend({ 
 
       onKeyDown:function(e){

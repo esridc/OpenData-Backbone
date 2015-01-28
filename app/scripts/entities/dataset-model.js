@@ -5,9 +5,6 @@
     
   MyOD.module('Models', function (Models, App, Backbone, Marionette, $, _) {
           
-    /**
-     * Home controller for the main page of the application
-     */
     Models.DatasetModel = Backbone.Model.extend({
 
       defaults: {

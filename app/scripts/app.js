@@ -16,7 +16,10 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
   MyOD.on('start', function(options){
     if (Backbone.history){
-      Backbone.history.start({ pushState: Modernizr.history, root: '/OpenData-Backbone' });
+      //if you are hosting on a server that can let the browser handle all the routing,
+      //you can use pushstate, otherwise (gh-pages) use hashed urls
+      //Backbone.history.start({ pushState: Modernizr.history, root: '/OpenData-Backbone' });
+      Backbone.history.start({ pushState: false, root: '/OpenData-Backbone' });
     }
 
     Backbone.history.on('route', this.appLayout.setClasses);
@@ -32,16 +35,21 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
     MyOD.navigate(route, { trigger:true });
   };
 
-  MyOD.queryStringToJSON = function () {            
-    var pairs = location.search.slice(1).split('&');
-    
+  MyOD.queryStringToObject = function () {
     var result = {};
-    _.each(pairs, function(pair) {
+
+    var q = Backbone.history.fragment.split('?')[1];
+
+    if (q) {
+      var pairs = q.split('&');
+      
+      _.each(pairs, function(pair) {
         pair = pair.split('=');
         result[pair[0]] = decodeURIComponent(pair[1] || '');
-    });
+      });
+    }
 
-    return JSON.parse(JSON.stringify(result));
+    return result;
   };
 
 })();

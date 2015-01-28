@@ -54,13 +54,15 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+      // (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      // function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      // e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      // e.src='//www.google-analytics.com/analytics.js';
+      // r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      // ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
+
+    <link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css">
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -75,42 +77,46 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-        <!-- endbuild -->
+    <script src="http://js.arcgis.com/3.12compact/"></script>
 
-        <!-- build:js scripts/main.js -->        
-        <script src="scripts/app.js"></script>
-        <script src="scripts/base/search-view.js"></script>
-        <script src="scripts/entities/search-model.js"></script>
-        <script src="scripts/app-config.js"></script>
-        <script src="scripts/compiled-templates.js"></script>
-        <script src="scripts/header-search-view.js"></script>
-        <script src="scripts/app-layout.js"></script>
-        <script src="scripts/home/home-view.js"></script>
-        <script src="scripts/home/home-controller.js"></script>
-        <script src="scripts/home/home-module.js"></script>
-        <script src="scripts/entities/dataset-model.js"></script>
-        <script src="scripts/entities/dataset-collection.js"></script>
-        <script src="scripts/results/results-view.js"></script>
-        <script src="scripts/results/results-controller.js"></script>
-        <script src="scripts/results/results-module.js"></script>
-        <script src="scripts/datasets/datasets-view.js"></script>
-        <script src="scripts/datasets/datasets-controller.js"></script>
-        <script src="scripts/datasets/datasets-module.js"></script>
+    <!-- build:js scripts/plugins.js -->
+    <!-- <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script> -->
+    <!-- endbuild -->
 
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+    <!-- build:js scripts/main.js -->        
+    <script src="scripts/app.js"></script>
+    <script src="scripts/utils/mapmanager.js"></script>
+    <script src="scripts/base/search-view.js"></script>
+    <script src="scripts/entities/search-model.js"></script>
+    <script src="scripts/app-config.js"></script>
+    <script src="scripts/compiled-templates.js"></script>
+    <script src="scripts/header-search-view.js"></script>
+    <script src="scripts/app-layout.js"></script>
+    <script src="scripts/home/home-view.js"></script>
+    <script src="scripts/home/home-controller.js"></script>
+    <script src="scripts/home/home-module.js"></script>
+    <script src="scripts/entities/dataset-model.js"></script>
+    <script src="scripts/entities/dataset-collection.js"></script>
+    <script src="scripts/results/results-view.js"></script>
+    <script src="scripts/results/results-controller.js"></script>
+    <script src="scripts/results/results-module.js"></script>
+    <script src="scripts/datasets/datasets-view.js"></script>
+    <script src="scripts/datasets/datasets-controller.js"></script>
+    <script src="scripts/datasets/datasets-module.js"></script>
+
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
 </body>
 </html>

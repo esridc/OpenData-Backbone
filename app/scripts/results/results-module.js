@@ -3,7 +3,6 @@
     
   'use strict';
 
-  //Home Module that controls the / and /home routes
   MyOD.module('ResultsModule', function (ResultsModule, App, Backbone, Marionette, $, _) {
       
     //Router for the module
@@ -23,7 +22,7 @@
 
       show: function(options){
 
-        var queryObj = App.queryStringToJSON();
+        var queryObj = App.queryStringToObject();
         //don't encode the q
         var q = App.searchModel.get('q');
         App.searchModel.set(_.extend(queryObj, { q: q }));

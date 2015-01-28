@@ -3,7 +3,6 @@
     
   'use strict';
 
-  //Home Module that controls the / and /home routes
   MyOD.module('DatasetsModule', function (DatasetsModule, App, Backbone, Marionette, $, _) {
       
     //Router for the module

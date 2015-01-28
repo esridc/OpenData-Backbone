@@ -26,7 +26,7 @@ __p += '<h2 class="clearfix"><img class="left" src="' +
 ((__t = ( tags.join(' | ') )) == null ? '' : __t) +
 '</dd>\n  \n  <dt>Views:</dt>\n  <dd>' +
 ((__t = ( views )) == null ? '' : __t) +
-'</dd>\n\n</dl>\n';
+'</dd>\n\n</dl>\n\n<div id="map"></div>\n';
 
 }
 return __p

@@ -5,9 +5,6 @@
     
   MyOD.module('HomeModule', function (HomeModule, App, Backbone, Marionette, $, _) {
           
-    /**
-     * Home controller for the main page of the application
-     */
     HomeModule.View = MyOD.Base.SearchView.extend({ 
 
       initialize: function () {

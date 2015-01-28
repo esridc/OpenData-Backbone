@@ -4,20 +4,28 @@
   'use strict';
     
   MyOD.module('DatasetsModule', function (DatasetsModule, App, Backbone, Marionette, $, _) {
-          
-    /**
-     * Home controller for the main page of the application
-     */
+
     DatasetsModule.Controller = Marionette.Controller.extend({ 
 
-      /**
-       * Initialize the Interface
-       */
+      initialize: function () {
+        _.bindAll(this, 'onModelFetched');
+      },
+
       initUi: function (options) {
+        this.mapManager = new App.Utils.MapManager();
         this.model = new App.Models.DatasetModel({ id: options });
-        this.model.fetch();
-        var view = new DatasetsModule.View({ model: this.model });
+        this.model.fetch().done(this.onModelFetched);
+      },
+
+      onModelFetched: function () {
+        var view = new DatasetsModule.View({ model: this.model, mapManager: this.mapManager });
         App.appLayout.getRegion('main').show(view);
+      },
+
+      onBeforeDestroy: function () {
+        if (this.mapManager) {
+          this.mapManager.destroy();
+        }
       }
 
     });
