@@ -8,7 +8,6 @@
     Main.HeaderSearchView = MyOD.Base.SearchView.extend({ 
 
       initialize: function () {
-        this.model = App.searchModel;
         this.listenTo(this.model, 'change:q', this.onQueryChanged);
       },
 

@@ -17,7 +17,9 @@
       },
 
       onBeforeDestroy: function () {
-        this.map.destroy();
+        if (this.map) {
+          this.map.destroy();
+        }
       },
 
       proxyEvent: function (evtName, evt) {
@@ -30,7 +32,7 @@
         var mapOpts = {
           center: [ -56.049, 38.485 ],
           zoom: 3,
-          basemap: 'gray'
+          basemap: 'dark-gray'
         };
 
         this.map = new esri.Map(mapDiv, mapOpts);

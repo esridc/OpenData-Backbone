@@ -125,6 +125,7 @@ gulp.task('watch', ['connect'], function () {
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/**/*.jst.ejs', ['jst']);
   gulp.watch('bower.json', ['wiredep']);
+  gulp.watch(['app/scripts/**/*.js', 'test/spec/**/*.spec.js'], ['jshint', 'test']);
 });
 
 gulp.task('build', ['jshint', 'html', 'styles', 'jst', 'images', 'fonts', 'extras'], function () {
@@ -135,7 +136,50 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
+
+
+
 gulp.task('deploy', function () {
   return gulp.src('dist/**/*')
     .pipe($.ghPages());
+});
+
+var deps = [
+  'bower_components/jquery/dist/jquery.js',
+  'bower_components/underscore/underscore.js',
+  'bower_components/backbone/backbone.js',
+  'bower_components/backbone.babysitter/lib/backbone.babysitter.js',
+  'bower_components/backbone.wreqr/lib/backbone.wreqr.js',
+  'bower_components/marionette/lib/core/backbone.marionette.js',
+  'bower_components/backbone-fetch-cache/backbone.fetch-cache.js',
+  'bower_components/moment/moment.js',
+  'test/lib/init.js',
+  'app/scripts/app.js',
+  'app/scripts/utils/mapmanager.js',
+  'app/scripts/base/search-view.js',
+  'app/scripts/entities/search-model.js',
+  'app/scripts/app-config.js',
+  'app/scripts/compiled-templates.js',
+  'app/scripts/header-search-view.js',
+  'app/scripts/app-layout.js',
+  'app/scripts/home/home-view.js',
+  'app/scripts/home/home-controller.js',
+  'app/scripts/home/home-module.js',
+  'app/scripts/entities/dataset-model.js',
+  'app/scripts/entities/dataset-collection.js',
+  'app/scripts/results/results-view.js',
+  'app/scripts/results/results-controller.js',
+  'app/scripts/results/results-module.js',
+  'app/scripts/datasets/datasets-view.js',
+  'app/scripts/datasets/datasets-controller.js',
+  'app/scripts/datasets/datasets-module.js',
+];
+
+gulp.task('test', function () {
+  return gulp.src('test/spec/**/*.spec.js')
+    .pipe($.jasminePhantom({
+      integration: true,
+      vendor: deps,
+      keepRunner: 'test/'
+    }));
 });

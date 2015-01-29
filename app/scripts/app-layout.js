@@ -9,7 +9,7 @@
       
       initialize: function () {
         _.bindAll(this, 'setClasses');
-        this.headerSearchView = new Main.HeaderSearchView().render();
+        this.headerSearchView = new Main.HeaderSearchView({ model: App.searchModel }).render();
       },
 
       el: 'body',

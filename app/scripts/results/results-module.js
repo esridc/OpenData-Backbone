@@ -24,8 +24,9 @@
 
         var queryObj = App.queryStringToObject();
         //don't encode the q
-        var q = App.searchModel.get('q');
-        App.searchModel.set(_.extend(queryObj, { q: q }));
+        // var q = App.searchModel.get('q');
+        // App.searchModel.set(_.extend(queryObj, { q: q }));
+        App.searchModel.set(queryObj);
 
         if(!this.resultsController){
           this.resultsController = new ResultsModule.Controller(options);

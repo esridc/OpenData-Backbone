@@ -21,6 +21,9 @@
     "Backbone": true,
     "Modernizr": true,
     "_": true,
-    "JST": true
+    "JST": true,
+    "require": true,
+    "esri": true,
+    "dojo": true
   }
 }
