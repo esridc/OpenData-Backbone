@@ -31,6 +31,24 @@ __p += '<h2 class="clearfix"><img class="left" src="' +
 }
 return __p
 },
+"error/templates/404": function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<h2 class="clearfix">The page you are looking for doesn\'t exist.</h2>';
+
+}
+return __p
+},
+"error/templates/500": function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<h2 class="clearfix">An error ocurred.</h2>';
+
+}
+return __p
+},
 "home/templates/home": function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;

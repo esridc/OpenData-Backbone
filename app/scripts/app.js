@@ -19,7 +19,9 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
       //if you are hosting on a server that can let the browser handle all the routing,
       //you can use pushstate, otherwise (gh-pages) use hashed urls
       //Backbone.history.start({ pushState: Modernizr.history, root: '/OpenData-Backbone' });
-      Backbone.history.start({ pushState: false, root: '/OpenData-Backbone' });
+      if (!Backbone.history.start({ pushState: false, root: '/OpenData-Backbone' })) {
+        MyOD.navigate('404', { trigger:true });
+      }
     }
 
     Backbone.history.on('route', this.appLayout.setClasses);
@@ -33,6 +35,10 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
   MyOD.search = function (options) {
     var route = MyOD.searchModel.getRoute();
     MyOD.navigate(route, { trigger:true });
+  };
+
+  MyOD.navigate404 = function () {
+    MyOD.navigate('404', { trigger: true, replace: true });
   };
 
   MyOD.queryStringToObject = function () {

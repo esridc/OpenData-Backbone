@@ -14,7 +14,12 @@
       initUi: function (options) {
         this.mapManager = new App.Utils.MapManager();
         this.model = new App.Models.DatasetModel({ id: options });
-        this.model.fetch().done(this.onModelFetched);
+        this.model
+          .fetch()
+            .done(this.onModelFetched)
+            .fail(function () {
+              App.navigate404();
+            });;
       },
 
       onModelFetched: function () {
