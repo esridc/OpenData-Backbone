@@ -167,6 +167,9 @@ var deps = [
   'app/scripts/datasets/datasets-view.js',
   'app/scripts/datasets/datasets-controller.js',
   'app/scripts/datasets/datasets-module.js',
+  'app/scripts/error/error-view.js',
+  'app/scripts/error/error-controller.js',
+  'app/scripts/error/error-module.js'
 ];
 
 gulp.task('test', function () {
