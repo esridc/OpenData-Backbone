@@ -15,17 +15,24 @@
 
       id: 'dataset',
 
+      ui: {
+        'mapDiv': '#map'
+      },
+
       modelEvents: {
         'change': 'render'
       },
 
       onDomRefresh: function () {
-        var self = this;
-        // TODO: would be nice to encapsulate this in mapmanager so consumers wouldn't have to know to do it
-        this.mapManager.dojoReady.done(function () {
-          self.mapManager.createMap('map', { coords: self.model.get('extent').coordinates });
-          self.mapManager.addDataset(self.model);
-        });
+        if (this.model.get('layer_type').toLowerCase() !== 'table') {
+          var self = this;
+          // TODO: would be nice to encapsulate this in mapmanager so consumers wouldn't have to know to do it
+          this.ui.mapDiv.show();
+          this.mapManager.dojoReady.done(function () {
+            self.mapManager.createMap('map', { coords: self.model.get('extent').coordinates });
+            self.mapManager.addDataset(self.model);
+          });
+        }
       },
 
       onDestroy: function () {

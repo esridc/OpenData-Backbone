@@ -36,25 +36,24 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
   };
 
   MyOD.queryStringToObject = function () {
-    // var result = {};
+    var result = {};
 
-    // var q = Backbone.history.getFragment().split('?')[1];
+    var q = Backbone.history.getFragment().split('?')[1];
 
-    // if (q) {
-    //   var pairs = q.split('&');
+    if (q) {
+      var pairs = q.split('&');
       
-    //   _.each(pairs, function(pair) {
-    //     pair = pair.split('=');
-    //     if (pair[0] === 'q') {
-    //       result[pair[0]] = pair[1].replace(/\+/, ' ') || '';
-    //     } else {
-    //       result[pair[0]] = decodeURIComponent(pair[1] || '');
-    //     }
-    //   });
-    // }
+      _.each(pairs, function(pair) {
+        pair = pair.split('=');
+        if (pair[0] === 'q') {
+          result[pair[0]] = pair[1].replace(/\+/, ' ') || '';
+        } else {
+          result[pair[0]] = decodeURIComponent(pair[1] || '');
+        }
+      });
+    }
 
-    // return result;
-    return{};
+    return result;
   };
 
   MyOD.onBeforeDestroy = function () {

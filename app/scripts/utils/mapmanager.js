@@ -51,6 +51,8 @@
       addDataset: function (dataset) {
         this.datasetLayer = new esri.layers.FeatureLayer(dataset.get('url'), { mode: esri.layers.FeatureLayer.MODE_AUTO });
 
+        this.datasetLayer.on('load', this.onLoadDataset);
+
         //proxy events
         this.datasetLayer.on('load', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:load'));
         this.datasetLayer.on('click', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:click'));
@@ -58,6 +60,12 @@
         this.datasetLayer.on('update-end', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:update-end'));
 
         this.map.addLayer(this.datasetLayer);
+      },
+
+      onLoadDataset: function (evt) {
+        //squash scale ranges - we need the layer to draw at all scales
+        evt.layer.minScale = 0; 
+        evt.layer.maxScale = 0;
       }
       
     });

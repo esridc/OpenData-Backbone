@@ -51,6 +51,8 @@ __p += '<td>' +
 '</td>\n<td>' +
 ((__t = ( record_count )) == null ? '' : __t) +
 '</td>\n<td>' +
+((__t = ( layer_type )) == null ? '' : __t) +
+'</td>\n<td>' +
 ((__t = ( views )) == null ? '' : __t) +
 '</td>\n<td>' +
 ((__t = ( moment(created_at).fromNow() )) == null ? '' : __t) +
@@ -70,7 +72,7 @@ __p += '<h2>Your search for <em>' +
 ((__t = ( q )) == null ? '' : __t) +
 '</em> yielded ' +
 ((__t = ( total_count )) == null ? '' : __t) +
-' datasets</h2>\n<div class="table-responsive">  \n  <table class="table table-striped table-bordered table-hover">\n    <thead>\n      <tr>\n        <th>NAME</th>\n        <th>OWNER</th>\n        <th>RECORDS</th>\n        <th>VIEWS</th>\n        <th>CREATED</th>\n        <th>UPDATED</th>\n      </tr>\n    </thead>\n    <tbody></tbody>\n  </table>\n</div>\n<nav>\n  <ul class="pagination">\n    ';
+' datasets</h2>\n<div class="table-responsive">  \n  <table class="table table-striped table-bordered table-hover">\n    <thead>\n      <tr>\n        <th>NAME</th>\n        <th>OWNER</th>\n        <th>RECORDS</th>\n        <th>LAYER TYPE</th>\n        <th>VIEWS</th>\n        <th>CREATED</th>\n        <th>UPDATED</th>\n      </tr>\n    </thead>\n    <tbody></tbody>\n  </table>\n</div>\n<nav>\n  <ul class="pagination">\n    ';
  if (pages.length > 1) { ;
 __p += '\n      <li id="page-prev" class="' +
 ((__t = ( firstPage )) == null ? '' : __t) +
