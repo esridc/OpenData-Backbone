@@ -6,7 +6,8 @@ A starter application demonstrating how an application might be built against th
 2. phantomjs (for tests)
 
 # Setup
-1. Clone the repo
+1. Clone the repo: `git clone git@github.com:mjuniper/OpenData-Backbone.git`
+2. `cd OpenData-Backbone`
 2. `npm install`
 3. `bower install`
 4. `gulp serve`
