@@ -15,7 +15,7 @@ describe('SearchModel', function() {
     });
 
     it('should properly getUrl', function() {
-      expect(searchModel.getUrl()).toEqual('//umb.dcdev.opendata.arcgis.com/datasets.json?q=&page=1&per_page=20&sort_by=relevance');
+      expect(searchModel.getUrl()).toEqual(MyOD.config.api + 'datasets.json?q=&page=1&per_page=20&sort_by=relevance');
     });
   });
 
@@ -34,7 +34,7 @@ describe('SearchModel', function() {
     });
 
     it('should properly getUrl', function() {
-      expect(searchModel.getUrl()).toEqual('//umb.dcdev.opendata.arcgis.com/datasets.json?q=foo&page=2&per_page=20&sort_by=updated_at');
+      expect(searchModel.getUrl()).toEqual(MyOD.config.api + 'datasets.json?q=foo&page=2&per_page=20&sort_by=updated_at');
     });
   });
 

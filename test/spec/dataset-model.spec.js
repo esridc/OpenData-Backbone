@@ -6,7 +6,7 @@ describe('DatasetModel', function() {
   });
 
   it('should properly generate url', function() {
-    expect(datasetModel.url()).toEqual('//umb.dcdev.opendata.arcgis.com/datasets/abc123.json');
+    expect(datasetModel.url()).toEqual(MyOD.config.api + 'datasets/abc123.json');
   });
 
 });
