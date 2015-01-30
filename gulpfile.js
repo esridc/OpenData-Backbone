@@ -128,7 +128,7 @@ gulp.task('watch', ['connect'], function () {
   gulp.watch(['app/scripts/**/*.js', 'test/spec/**/*.spec.js'], ['jshint', 'test']);
 });
 
-gulp.task('build', ['jshint', 'html', 'styles', 'jst', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['jshint', 'test', 'html', 'styles', 'jst', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
@@ -136,10 +136,7 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
-
-
-
-gulp.task('deploy', function () {
+gulp.task('deploy', [ 'build' ], function () {
   return gulp.src('dist/**/*')
     .pipe($.ghPages());
 });
