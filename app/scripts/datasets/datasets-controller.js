@@ -19,7 +19,7 @@
             .done(this.onModelFetched)
             .fail(function () {
               App.navigate404();
-            });;
+            });
       },
 
       onModelFetched: function () {
