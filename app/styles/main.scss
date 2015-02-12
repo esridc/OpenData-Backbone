@@ -101,11 +101,7 @@ body {
   }
 }
 
-.page-home .navbar-form {
-  display: none;
-}
-
-#dataset h2 img {
-  height: 2em;
-  margin-right: 10px;
-}
+@import "home.scss";
+@import "error.scss";
+@import "results.scss";
+@import "dataset.scss";

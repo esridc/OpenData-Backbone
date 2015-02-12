@@ -9,7 +9,7 @@
 
       initUi: function () {
         var view = new HomeModule.View();
-        App.appLayout.getRegion('main').show(view);
+        App.layout.getRegion('main').show(view);
       }
 
     });

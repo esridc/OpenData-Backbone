@@ -24,7 +24,7 @@
 
       onModelFetched: function () {
         var view = new DatasetsModule.View({ model: this.model, mapManager: this.mapManager });
-        App.appLayout.getRegion('main').show(view);
+        App.layout.getRegion('main').show(view);
       },
 
       onBeforeDestroy: function () {

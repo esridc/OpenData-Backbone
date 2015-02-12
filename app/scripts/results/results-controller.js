@@ -11,7 +11,7 @@
         this.collection = new App.Models.DatasetCollection();
         this.collection.fetch({ cache: true });
         var view = new ResultsModule.View({ model: App.searchModel, collection: this.collection });
-        App.appLayout.getRegion('main').show(view);
+        App.layout.getRegion('main').show(view);
       }
 
     });

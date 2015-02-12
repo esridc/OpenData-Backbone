@@ -12,7 +12,7 @@
         var model = new Backbone.Model({ errorCode: options.errorCode });
         var view = new ErrorModule.View({ model: model });
 
-        App.appLayout.getRegion('main').show(view);
+        App.layout.getRegion('main').show(view);
       }
 
     });

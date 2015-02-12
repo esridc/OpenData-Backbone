@@ -11,7 +11,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
   MyOD.on('before:start', function(options){
     this.searchModel = new MyOD.Models.SearchModel();
-    this.appLayout = new MyOD.Main.Layout();
+    this.layout = new MyOD.Main.Layout();
   });
 
   MyOD.on('start', function(options){
@@ -24,8 +24,8 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
       }
     }
 
-    Backbone.history.on('route', this.appLayout.setClasses);
-    this.appLayout.setClasses();
+    Backbone.history.on('route', this.layout.setClasses);
+    this.layout.setClasses();
   });
 
   MyOD.navigate = function (route, options) {
