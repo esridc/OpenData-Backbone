@@ -1,7 +1,12 @@
 
 #dataset {
-    h2 img {
+  h2 img {
     height: 2em;
     margin-right: 10px;
+  }
+  #map {
+    display: none;
+    height: 600px;
+    border: solid 3px lightgray;
   }
 }

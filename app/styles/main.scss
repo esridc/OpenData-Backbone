@@ -17,12 +17,6 @@ body {
   padding-bottom: 20px;
 }
 
-#map {
-  display: none;
-  height: 600px;
-  border: solid 3px lightgray;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -41,6 +35,12 @@ body {
     margin-bottom: 0;
     line-height: 40px;
     padding-bottom: 19px;
+    a {
+      color: $navbar-default-link-color;
+      &:hover, &:focus, &:active; {
+        text-decoration: none;
+      }
+    }
   }
 }
 

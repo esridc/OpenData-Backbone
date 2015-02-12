@@ -18,6 +18,17 @@
         main: '#main-region'
       },
 
+      events: {
+        'click #home-link': 'navigateHome'
+      },
+
+      navigateHome: function (e) {
+        if (!e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          App.navigate('', { trigger: true });
+        }
+      },
+
       setClasses: function () {
         var self = this;
         if (Backbone.history.getFragment().indexOf('datasets') === 0) {
