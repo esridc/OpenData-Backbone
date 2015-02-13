@@ -55,12 +55,11 @@
       },
 
       getDatasetLayerOpts: function (dataset) {
-        var opts = { 
+        return { 
           mode: esri.layers.FeatureLayer.MODE_AUTO,
-          outFields: '*'
+          outFields: '*',
+          infoTemplate: this.getDatasetInfoTemplate(dataset)
         };
-        opts.infoTemplate = this.getDatasetInfoTemplate(dataset);
-        return opts;
       },
 
       addDataset: function (dataset) {
