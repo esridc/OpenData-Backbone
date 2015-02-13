@@ -133,9 +133,15 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
-gulp.task('deploy', [ 'build' ], function () {
+gulp.task('ghPages', [ 'build' ], function () {
   return gulp.src('dist/**/*')
     .pipe(plugins.ghPages());
+});
+
+//composition FTW!
+gulp.task('deploy', [ 'ghPages' ], function () {
+  return gulp.src('app/index.html')
+    .pipe(plugins.open('', {url: 'http://mjuniper.github.io/OpenData-Backbone/'}));
 });
 
 var deps = [
