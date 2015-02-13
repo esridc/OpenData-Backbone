@@ -22,7 +22,7 @@
 
       show: function(options){
 
-        if(!this.resultsController){
+        if(!this.datasetsController){
           this.datasetsController = new DatasetsModule.Controller(options);
         }
 

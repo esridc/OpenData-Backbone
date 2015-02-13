@@ -2,19 +2,19 @@
 'use strict';
 // generated on 2015-01-15 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var plugins = require('gulp-load-plugins')();
 
 gulp.task('styles', function() {
   return gulp.src('app/styles/main.scss')
-    .pipe($.plumber())
-    .pipe($.sass()) 
-    .pipe($.autoprefixer({browsers: ['last 1 version']}))
+    .pipe(plugins.plumber())
+    .pipe(plugins.sass()) 
+    .pipe(plugins.autoprefixer({browsers: ['last 1 version']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
 
 gulp.task('jst', function () {
   return gulp.src('./app/scripts/**/*.jst.ejs')
-    .pipe($.jstConcat('compiled-templates.js', {
+    .pipe(plugins.jstConcat('compiled-templates.js', {
       renameKeys: ['^.*\/app\/scripts\/(.*).jst.ejs$', '$1']
     }))
     .pipe(gulp.dest('./app/scripts'));
@@ -22,31 +22,31 @@ gulp.task('jst', function () {
 
 gulp.task('jshint', function () {
   return gulp.src(['app/scripts/**/*.js', '!app/scripts/compiled-templates.js'])
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('jshint-stylish'))
+    .pipe(plugins.jshint.reporter('fail'));
 });
 
 gulp.task('html', ['styles'], function () {
   var lazypipe = require('lazypipe');
   var cssChannel = lazypipe()
-    .pipe($.csso)
-    .pipe($.replace, 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts');
-  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+    .pipe(plugins.csso)
+    .pipe(plugins.replace, 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts');
+  var assets = plugins.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', cssChannel()))
+    .pipe(plugins.if('*.js', plugins.uglify()))
+    .pipe(plugins.if('*.css', cssChannel()))
     .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(plugins.useref())
+    .pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe(plugins.cache(plugins.imagemin({
       progressive: true,
       interlaced: true
     })))
@@ -55,8 +55,8 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-    .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-    .pipe($.flatten())
+    .pipe(plugins.filter('**/*.{eot,svg,ttf,woff}'))
+    .pipe(plugins.flatten())
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -109,7 +109,7 @@ gulp.task('wiredep', function () {
 });
 
 gulp.task('watch', ['connect'], function () {
-  $.livereload.listen();
+  plugins.livereload.listen();
 
   // watch for changes
   gulp.watch([
@@ -117,7 +117,7 @@ gulp.task('watch', ['connect'], function () {
     '.tmp/styles/**/*.css',
     'app/scripts/**/*.js',
     'app/images/**/*'
-  ]).on('change', $.livereload.changed);
+  ]).on('change', plugins.livereload.changed);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/**/*.jst.ejs', ['jst']);
@@ -126,7 +126,7 @@ gulp.task('watch', ['connect'], function () {
 });
 
 gulp.task('build', ['jshint', 'test', 'html', 'styles', 'jst', 'images', 'fonts', 'extras'], function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe(plugins.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], function () {
@@ -135,7 +135,7 @@ gulp.task('default', ['clean'], function () {
 
 gulp.task('deploy', [ 'build' ], function () {
   return gulp.src('dist/**/*')
-    .pipe($.ghPages());
+    .pipe(plugins.ghPages());
 });
 
 var deps = [
@@ -174,7 +174,7 @@ var deps = [
 
 gulp.task('test', function () {
   return gulp.src('test/spec/**/*.spec.js')
-    .pipe($.jasminePhantom({
+    .pipe(plugins.jasminePhantom({
       integration: true,
       vendor: deps,
       keepRunner: 'test/'

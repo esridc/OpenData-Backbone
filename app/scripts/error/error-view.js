@@ -7,7 +7,7 @@
           
     ErrorModule.View = Marionette.ItemView.extend({
       
-      //className: 'container',
+      id: 'page-error',
 
       getTemplate: function(){
         var errorCode = this.model.get('errorCode');

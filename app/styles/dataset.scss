@@ -1,8 +1,11 @@
 
-#dataset {
-  h2 img {
-    height: 2em;
-    margin-right: 10px;
+#page-dataset {
+  h2 {
+    margin-top: 0;
+    img {
+      height: 2em;
+      margin-right: 10px;
+    }
   }
   #map {
     display: none;

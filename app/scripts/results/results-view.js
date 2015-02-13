@@ -43,7 +43,7 @@
         'change:total_count': 'render'
       },
 
-      id: 'results',
+      id: 'page-results',
 
       selectDataset: function (childView, childModel) {
         App.navigate('/datasets/' + childModel.get('id'), { trigger: true });

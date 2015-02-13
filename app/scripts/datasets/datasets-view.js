@@ -13,7 +13,7 @@
 
       template: JST['datasets/templates/dataset'],
 
-      id: 'dataset',
+      id: 'page-dataset',
 
       ui: {
         'mapDiv': '#map'
@@ -21,6 +21,13 @@
 
       modelEvents: {
         'change': 'render'
+      },
+
+      templateHelpers: function () {
+        var baseUrl = this.model.url().replace(/.json$/, '');
+        return {
+          baseUrl: baseUrl 
+        };
       },
 
       onDomRefresh: function () {

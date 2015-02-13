@@ -2,11 +2,21 @@ this.JST = {"datasets/templates/dataset": function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<h2 class="clearfix"><img class="left" src="' +
+__p += '<div class="clearfix">\n  <h2 class="pull-left clearfix"><img src="' +
 ((__t = ( thumbnail_url )) == null ? '' : __t) +
-'"><span class="left">' +
+'"><span>' +
 ((__t = ( name )) == null ? '' : __t) +
-'</span></h2>\n\n<dl class="dl-horizontal">\n  \n  <dt>Description:</dt>\n  <dd>' +
+'</span></h2>\n  <div class="dropdown pull-right">\n    <button class="btn btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n      Download\n      <span class="caret"></span>\n    </button>\n    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">\n      <li><a href="' +
+((__t = ( baseUrl )) == null ? '' : __t) +
+'.csv" target="_blank" download>Spreadsheet</a></li>\n      <li><a href="' +
+((__t = ( baseUrl )) == null ? '' : __t) +
+'.kml" target="_blank" download>KML</a></li>\n      <li><a href="' +
+((__t = ( baseUrl )) == null ? '' : __t) +
+'.zip" target="_blank" download>Shapefile</a></li>\n      <li class="divider"></li>\n      <li><a href="' +
+((__t = ( arcgis_online_item_url )) == null ? '' : __t) +
+'" target="_blank">View in ArcGIS Online</a></li>\n      <li><a href="' +
+((__t = ( url )) == null ? '' : __t) +
+'" target="_blank">API</a></li>\n    </ul>\n  </div>\n</div>\n\n\n<dl class="dl-horizontal">\n  \n  <dt>Description:</dt>\n  <dd>' +
 ((__t = ( description )) == null ? '' : __t) +
 '</dd>\n  \n  <dt>Owner:</dt>\n  <dd>' +
 ((__t = ( owner )) == null ? '' : __t) +
@@ -14,15 +24,7 @@ __p += '<h2 class="clearfix"><img class="left" src="' +
 ((__t = ( moment(created_at).calendar() )) == null ? '' : __t) +
 '</dd>\n  \n  <dt>Updated:</dt>\n  <dd>' +
 ((__t = ( moment(updated_at).calendar() )) == null ? '' : __t) +
-'</dd>\n\n  <dt>Metadata:</dt>\n  <dd><a href="' +
-((__t = ( arcgis_online_item_url )) == null ? '' : __t) +
-'">' +
-((__t = ( arcgis_online_item_url )) == null ? '' : __t) +
-'</a></dd>\n  \n  <dt>Url:</dt>\n  <dd><a href="' +
-((__t = ( url )) == null ? '' : __t) +
-'">' +
-((__t = ( url )) == null ? '' : __t) +
-'</a></dd>\n\n  <dt>Tags:</dt>\n  <dd>' +
+'</dd>\n\n  <dt>Tags:</dt>\n  <dd>' +
 ((__t = ( tags.join(' | ') )) == null ? '' : __t) +
 '</dd>\n  \n  <dt>Views:</dt>\n  <dd>' +
 ((__t = ( views )) == null ? '' : __t) +
@@ -35,7 +37,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<h2 class="clearfix">The page you are looking for doesn\'t exist.</h2>';
+__p += '<div class="alert alert-danger" role="alert">\n  <h2>The page you are looking for doesn\'t exist.</h2>\n</div>\n';
 
 }
 return __p
@@ -44,7 +46,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<h2 class="clearfix">An error ocurred.</h2>';
+__p += '<div class="alert alert-danger" role="alert">\n  <h2>An error ocurred.</h2>\n</div>\n';
 
 }
 return __p

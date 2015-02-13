@@ -7,6 +7,10 @@
           
     Models.DatasetModel = Backbone.Model.extend({
 
+      initialize: function () {
+        this.on('sync', this.onSync);
+      },
+
       defaults: {
         id: '',
         name: '',
@@ -22,7 +26,8 @@
       },
 
       parse: function (response) {
-        return response.data || response;
+        var data = response.data || response;
+        return data;
       },
 
       url: function () {

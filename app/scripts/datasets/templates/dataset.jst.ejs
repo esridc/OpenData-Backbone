@@ -1,4 +1,21 @@
-<h2 class="clearfix"><img class="left" src="<%= thumbnail_url %>"><span class="left"><%= name %></span></h2>
+<div class="clearfix">
+  <h2 class="pull-left clearfix"><img src="<%= thumbnail_url %>"><span><%= name %></span></h2>
+  <div class="dropdown pull-right">
+    <button class="btn btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Download
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="<%= baseUrl %>.csv" target="_blank" download>Spreadsheet</a></li>
+      <li><a href="<%= baseUrl %>.kml" target="_blank" download>KML</a></li>
+      <li><a href="<%= baseUrl %>.zip" target="_blank" download>Shapefile</a></li>
+      <li class="divider"></li>
+      <li><a href="<%= arcgis_online_item_url %>" target="_blank">View in ArcGIS Online</a></li>
+      <li><a href="<%= url %>" target="_blank">API</a></li>
+    </ul>
+  </div>
+</div>
+
 
 <dl class="dl-horizontal">
   
@@ -13,12 +30,6 @@
   
   <dt>Updated:</dt>
   <dd><%= moment(updated_at).calendar() %></dd>
-
-  <dt>Metadata:</dt>
-  <dd><a href="<%= arcgis_online_item_url %>"><%= arcgis_online_item_url %></a></dd>
-  
-  <dt>Url:</dt>
-  <dd><a href="<%= url %>"><%= url %></a></dd>
 
   <dt>Tags:</dt>
   <dd><%= tags.join(' | ') %></dd>
