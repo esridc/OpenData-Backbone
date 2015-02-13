@@ -15,7 +15,6 @@ A starter application demonstrating how an application might be built against th
 # Roadmap
 Not a roadmap in the sense that these are features that will *definitely* be implemented; more of a list of potential improvements
 
-* infowindow on map
 * smart maps
 * table
 * downloads

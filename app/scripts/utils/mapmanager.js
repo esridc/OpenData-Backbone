@@ -48,8 +48,24 @@
         this.map.on('layer-add', dojo.hitch(this, this.proxyEvent, 'map:layer-add'));
       },
 
+      getDatasetInfoTemplate: function (dataset) {
+        //var datasetName = dataset.get('name');
+        var displayFieldName = dataset.get('display_field');
+        return new esri.InfoTemplate('${' + displayFieldName + '}', '${*}');
+      },
+
+      getDatasetLayerOpts: function (dataset) {
+        var opts = { 
+          mode: esri.layers.FeatureLayer.MODE_AUTO,
+          outFields: '*'
+        };
+        opts.infoTemplate = this.getDatasetInfoTemplate(dataset);
+        return opts;
+      },
+
       addDataset: function (dataset) {
-        this.datasetLayer = new esri.layers.FeatureLayer(dataset.get('url'), { mode: esri.layers.FeatureLayer.MODE_AUTO });
+        var opts = this.getDatasetLayerOpts(dataset);
+        this.datasetLayer = new esri.layers.FeatureLayer(dataset.get('url'), opts);
 
         this.datasetLayer.on('load', this.onLoadDataset);
 
