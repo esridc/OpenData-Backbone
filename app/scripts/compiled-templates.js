@@ -31,15 +31,6 @@ __p += '<h2 class="clearfix"><img class="left" src="' +
 }
 return __p
 },
-"home/templates/home": function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="jumbotron">\n  <h1 class="page-header">My Open Data</h1>\n\n  <p>\n    <div class="input-group input-group-lg">\n      <label class="sr-only" for="search">Search</label>\n      <input type="search" name="search" id="search" class="form-control" placeholder="search for open data">\n      <span class="input-group-btn">\n        <button id="search-btn" class="btn btn-default" type="button">\n          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>\n        </button>\n      </span>\n    </div>\n  </p>\n\n</div>\n';
-
-}
-return __p
-},
 "error/templates/404": function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -54,6 +45,15 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<h2 class="clearfix">An error ocurred.</h2>';
+
+}
+return __p
+},
+"home/templates/home": function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="jumbotron">\n  <h1 class="page-header">My Open Data</h1>\n\n  <p>\n    <div class="input-group input-group-lg">\n      <label class="sr-only" for="search">Search</label>\n      <input type="search" name="search" id="search" class="form-control" placeholder="search for open data">\n      <span class="input-group-btn">\n        <button id="search-btn" class="btn btn-default" type="button">\n          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>\n        </button>\n      </span>\n    </div>\n  </p>\n\n</div>\n';
 
 }
 return __p
