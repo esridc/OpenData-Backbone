@@ -107,27 +107,21 @@
         };
 
           
-        if (opts.type == 'polygon'){
-
+        if (opts.type === 'polygon'){
           esri.renderer.smartMapping.createClassedColorRenderer(opts)
             .then(function(renderer){
               _applyRenderer( renderer );
             });
-
-        } else if (opts.type == 'point' && !opts.heatmap){
-
+        } else if (opts.type === 'point' && !opts.heatmap){
           esri.renderer.smartMapping.createClassedSizeRenderer(opts)
             .then(function(renderer){
               _applyRenderer( renderer );
             });
-
-        } else if (opts.type === "point" && opts.heatmap) {
-
+        } else if (opts.type === 'point' && opts.heatmap) {
           esri.renderer.smartMapping.createHeatmapRenderer(opts)
             .then(function(renderer){
               _applyRenderer( renderer );
             });
-
         }
 
         return dfd.promise();
