@@ -12,6 +12,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
   MyOD.on('before:start', function(options){
     this.searchModel = new MyOD.Models.SearchModel();
     this.layout = new MyOD.Main.Layout();
+    //this.reqres = new Backbone.Wreqr.RequestResponse();
   });
 
   MyOD.on('start', function(options){

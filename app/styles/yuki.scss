@@ -1,0 +1,160 @@
+#yuki-viz-tools {
+  float: right;
+  background:rgb(240,240,240);
+  height: auto;
+  margin-right: -12px;
+  width: 242px;
+  padding: 8px;
+  border: 1px solid #DEDEDE;
+  #styled-by {
+    margin-left:5px;
+    .dropdown {
+      cursor:pointer;
+    }
+  }
+  .dropdown-menu {
+    li {
+      span {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.714;
+        color: #333333;
+        white-space: nowrap;
+        overflow: hidden;
+        &:hover {
+          background:#EEE;
+          cursor:pointer;
+        }
+        .legend-color {
+          margin-top:5px;
+          margin-bottom:5px;
+        }
+      }
+    }
+  }
+  #yuki-color-ramp-container {
+    width: 100%;
+    height: 30px;
+    padding: 3px;
+    padding-top: 0px;
+    padding-left: 5px;
+    &:hover {
+      background: #E5E5E5;
+      border-radius: 4px;
+    }
+    .caret {
+      margin-top: 7px;
+      margin-left: 5px;
+    }
+    .dropdown-menu {
+      width: 208px;
+      margin-top: 10px;
+      padding: 0px;
+    }
+  }
+  #styled-by-message {
+    margin-left: 3px;
+    font-size: 10pt;
+    margin-top: 3px;
+    margin-bottom:-5px;
+  }
+  #legend-values {
+    overflow: hidden;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    color: #999;
+    width:100%;
+  }
+  .legend-color {
+    float: left;
+    height: 14px;
+    width: 15%;
+    margin-top:9px;
+    border-right: 1px solid $body-borders;
+  }
+  .legend-size {
+    float: left;
+    height: 28px;
+    border-radius: 1000px;
+    width: 10%;
+    margin-right: 17px;
+    border:1px solid $body-borders-light;
+  }
+  .size-0 {
+    width: 7px;
+    height:7px;
+    margin-left: 0px;
+    margin-top: 18px;
+  }
+  .size-1 {
+    width: 10px;
+    height:10px;
+    margin-top: 15px;
+  }
+  .size-2 {
+    width: 14px;
+    height:14px;
+    margin-top:12px;
+  }
+  .size-3 {
+    width: 17px;
+    height:17px;
+    margin-top: 9px;
+  }
+  .size-4 {
+    width: 22px;
+    height:22px;
+    margin-top:5px;
+  }
+  .size-5 {
+    width: 27px;
+    height: 27px;
+    margin-top: 0px;
+    margin-right:0px;
+  }
+}
+#styled-by-min {
+  position: relative;
+  float: left;
+  font-size: 9pt;
+  margin-left: 10px;
+}
+#styled-by-max {
+  position: absolute;
+  font-size: 9pt;
+  margin-left: 160px;
+}
+#styled-by-null {
+  position: absolute;
+  width: 50px;
+  height: 60px;
+  #null-point {
+    width: 5px;
+    height: 5px;
+    border: 1px solid $body-borders-light;
+    background: #999;
+    border-radius: 10px;
+    position: absolute;
+    left: 20px;
+    top: 25px;
+  }
+  #null-poly {
+    position: absolute;
+    height: 14px;
+    width: 45%;
+    margin-top: 9px;
+    background: #C4C4C4;
+    border-right: 1px solid $body-borders;
+    left: 12px;
+    top: 5px;
+  }
+  #legend-null-title {
+    color: #999;
+    font-size: 13px;
+    position: absolute;
+    bottom: 2px;
+    left: 12px;
+  }
+}

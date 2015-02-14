@@ -24,6 +24,7 @@
     "JST": true,
     "require": true,
     "esri": true,
-    "dojo": true
+    "dojo": true,
+    "Yuki": true
   }
 }

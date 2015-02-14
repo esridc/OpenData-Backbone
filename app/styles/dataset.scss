@@ -1,3 +1,4 @@
+@import "yuki.scss";
 
 #page-dataset {
   h2 {
@@ -10,5 +11,9 @@
   #map {
     display: none;
     height: 600px;
+  }
+
+  #yuki-viz-tools {
+    margin-right: 15px;
   }
 }

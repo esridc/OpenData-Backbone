@@ -21,7 +21,7 @@ gulp.task('jst', function () {
 });
 
 gulp.task('jshint', function () {
-  return gulp.src(['app/scripts/**/*.js', '!app/scripts/compiled-templates.js'])
+  return gulp.src(['app/scripts/**/*.js', '!app/scripts/compiled-templates.js', '!app/scripts/lib/yuki.js', '!app/scripts/lib/plugins/smartMapping.js'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));

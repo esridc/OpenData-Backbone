@@ -101,6 +101,9 @@ body {
   }
 }
 
+$body-borders: #D4D4D4;
+$body-borders-light: #fff; 
+
 @import "home.scss";
 @import "error.scss";
 @import "results.scss";

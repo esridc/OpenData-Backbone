@@ -7,13 +7,16 @@
     Utils.MapManager = Marionette.Object.extend({
       
       initialize: function () {
+        _.bindAll(this, 'updateStyle');
+
         this.globalChannel = Backbone.Wreqr.radio.channel('global');
 
         var dfd = $.Deferred();
         this.dojoReady = dfd.promise();
-        require(['esri/map', 'esri/layers/FeatureLayer', 'dojo/domReady!'], function(Map) {
+        require(['esri/map', 'esri/layers/FeatureLayer', 'plugins/smartMapping', 'dojo/domReady!'], function(Map) {
           dfd.resolve();
         });
+        App.reqres.setHandler('smaps:update:style', this.updateStyle);
       },
 
       onBeforeDestroy: function () {
@@ -81,6 +84,53 @@
         //squash scale ranges - we need the layer to draw at all scales
         evt.layer.minScale = 0; 
         evt.layer.maxScale = 0;
+      },
+
+      updateStyle: function (opts) {
+        var dfd = $.Deferred();
+
+        var layer = opts.layer = this.datasetLayer;
+
+        var _applyRenderer = function(smap){
+          layer.setRenderer(smap.renderer);
+
+          //check if refresh needed, else redraw
+          if ( layer.graphics && layer.graphics.length ) {
+            if (layer.graphics[0].attributes[ opts.field ]) {
+              layer.redraw();
+            } else {
+              layer.refresh();
+            }
+          }
+
+          dfd.resolve(smap.renderer);
+        };
+
+          
+        if (opts.type == 'polygon'){
+
+          esri.renderer.smartMapping.createClassedColorRenderer(opts)
+            .then(function(renderer){
+              _applyRenderer( renderer );
+            });
+
+        } else if (opts.type == 'point' && !opts.heatmap){
+
+          esri.renderer.smartMapping.createClassedSizeRenderer(opts)
+            .then(function(renderer){
+              _applyRenderer( renderer );
+            });
+
+        } else if (opts.type === "point" && opts.heatmap) {
+
+          esri.renderer.smartMapping.createHeatmapRenderer(opts)
+            .then(function(renderer){
+              _applyRenderer( renderer );
+            });
+
+        }
+
+        return dfd.promise();
       }
       
     });

@@ -32,6 +32,13 @@
 
       url: function () {
         return MyOD.config.api + 'datasets/' + this.get('id') + '.json';
+      },
+
+      getNumericFields: function () {
+        var fields = this.get('fields');
+        return _.filter(fields, function (item) {
+          return _.contains([ 'esriFieldTypeSingle', 'esriFieldTypeDouble', 'esriFieldTypeInteger' ], item.type);
+        });
       }
 
     });

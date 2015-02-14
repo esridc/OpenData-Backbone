@@ -2,7 +2,7 @@ this.JST = {"datasets/templates/dataset": function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="clearfix">\n  <h2 class="pull-left clearfix"><img src="' +
+__p += '<div class="clearfix">\n  <h2 class="pull-left clearfix"><img class="img-thumbnail" src="' +
 ((__t = ( thumbnail_url )) == null ? '' : __t) +
 '"><span>' +
 ((__t = ( name )) == null ? '' : __t) +
@@ -28,7 +28,7 @@ __p += '<div class="clearfix">\n  <h2 class="pull-left clearfix"><img src="' +
 ((__t = ( tags.join(' | ') )) == null ? '' : __t) +
 '</dd>\n  \n  <dt>Views:</dt>\n  <dd>' +
 ((__t = ( views )) == null ? '' : __t) +
-'</dd>\n\n</dl>\n\n<div id="map"></div>\n';
+'</dd>\n\n</dl>\n\n<div id="map"></div>\n<div id="smaps">\n  <div class="container"></div>\n</div>\n';
 
 }
 return __p
