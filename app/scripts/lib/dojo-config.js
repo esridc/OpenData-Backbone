@@ -1,5 +1,5 @@
 var dojoConfig = {
   paths: {
-    plugins: '/scripts/lib/plugins'
+    plugins: location.pathname + 'scripts/lib/plugins'
   }
 };
