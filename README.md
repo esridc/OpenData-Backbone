@@ -1,5 +1,5 @@
 # OpenData-Backbone
-A starter application demonstrating how an application might be built against the Open Data API using Backbone.js and Marionette.js.
+A sample application demonstrating how an application might be built against the Open Data API using Backbone.js and Marionette.js.
 
 See it running here: [http://mjuniper.github.io/OpenData-Backbone/](http://mjuniper.github.io/OpenData-Backbone/)
 
