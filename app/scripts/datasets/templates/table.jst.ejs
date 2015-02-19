@@ -1,0 +1,26 @@
+<!-- <h2>Showing...</h2> -->
+<div class="table-responsive">  
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <% _.each(fields, function (field) { %>
+          <th><%= field.alias || field.name %></th>
+        <% }); %>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<nav>
+  <ul class="pagination">
+    <% if (pages.length > 1) { %>
+      <li id="page-prev" class="<%= firstPage %>"><a data-page="<%= prevPage %>"><span aria-hidden="true">&laquo;</span></a></li>
+      
+      <% _.each(pages, function (page) { %>
+        <li class="<%= page.active %>"><a class="page-number" data-page="<%= page.page %>"><%= page.page %></a></li>
+      <% }); %>
+
+      <li id="page-next" class="<%= lastPage %>"><a data-page="<%= nextPage %>"><span aria-hidden="true">&raquo;</span></a></li>
+    <% } %>
+  </ul>
+</nav>

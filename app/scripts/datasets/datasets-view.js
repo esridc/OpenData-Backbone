@@ -17,7 +17,8 @@
       id: 'page-dataset',
 
       ui: {
-        'mapDiv': '#map'
+        'mapDiv': '#map',
+        'tableContainer': '#table-container'
       },
 
       modelEvents: {
@@ -30,6 +31,15 @@
           baseUrl: baseUrl 
         };
       },
+
+      onRender: function () {
+        //TODO: refactor to use regions...
+        this.tableView = new DatasetsModule.TableView({ el: this.ui.tableContainer, model: this.model }).render();
+      },
+
+      // onShow: function () {
+      //   console.debug('onShow');
+      // },
 
       onDomRefresh: function () {
         if (this.model.get('layer_type').toLowerCase() !== 'table') {
@@ -165,6 +175,7 @@
 
       onDestroy: function () {
         this.mapManager.destroy();
+        this.tableView.destroy();
       }
       
     });
