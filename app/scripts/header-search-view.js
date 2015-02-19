@@ -18,7 +18,8 @@
       events: {
         'keydown #header-search': 'onKeyDown',
         'keyup #header-search': 'onKeyUp',
-        'click #header-search-btn': 'search'
+        'click #header-search-btn': 'search',
+        'typeahead:selected input': 'onTypeaheadSelected'
       },
 
       ui: {
@@ -26,7 +27,7 @@
       },
 
       onQueryChanged: function () {
-        this.ui.search.val(this.model.get('q'));
+        this.ui.search.typeahead('val', this.model.get('q'));
       }
 
     });

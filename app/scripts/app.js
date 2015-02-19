@@ -53,7 +53,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
       _.each(pairs, function(pair) {
         pair = pair.split('=');
         if (pair[0] === 'q') {
-          result[pair[0]] = pair[1].replace(/\+/, ' ') || '';
+          result[pair[0]] = pair[1].replace(/\+/g, ' ') || '';
         } else {
           result[pair[0]] = decodeURIComponent(pair[1] || '');
         }
@@ -61,6 +61,27 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
     }
 
     return result;
+  };
+
+  MyOD.getBloodhound = function () {
+    if (!this.bloodhound) {
+      this.bloodhound = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 10,
+        remote: {
+          url: MyOD.config.api + 'datasets/autocomplete.json?query=%QUERY',
+          rateLimitWait: 150,
+          replace: function (url, query) {
+            return url.replace('%QUERY', query);
+          },
+          filter: function(response) {
+            return response.data;
+          }
+        }
+      });
+    }
+    return this.bloodhound;
   };
 
   MyOD.onBeforeDestroy = function () {

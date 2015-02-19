@@ -16,7 +16,8 @@
       events: {
         'keydown #search': 'onKeyDown',
         'keyup #search': 'onKeyUp',
-        'click #search-btn': 'search'
+        'click #search-btn': 'search',
+        'typeahead:selected input': 'onTypeaheadSelected'
       },
 
       ui: {
