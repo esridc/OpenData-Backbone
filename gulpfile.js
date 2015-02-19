@@ -40,7 +40,7 @@ gulp.task('html', ['styles'], function () {
     .pipe(plugins.if('*.css', cssChannel()))
     .pipe(assets.restore())
     .pipe(plugins.useref())
-    .pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true, loose: true})))
+    //.pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
 
@@ -145,7 +145,7 @@ gulp.task('deploy', [ 'ghPages' ], function () {
 });
 
 var deps = [
-  'bower_components/jquery/jquery.js',
+  'bower_components/jquery/dist/jquery.js',
   'bower_components/underscore/underscore.js',
   'bower_components/backbone/backbone.js',
   'bower_components/backbone.babysitter/lib/backbone.babysitter.js',
