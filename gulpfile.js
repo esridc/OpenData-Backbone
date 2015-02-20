@@ -40,7 +40,7 @@ gulp.task('html', ['styles'], function () {
     .pipe(plugins.if('*.css', cssChannel()))
     .pipe(assets.restore())
     .pipe(plugins.useref())
-    //.pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true, loose: true})))
+    .pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true})))
     .pipe(gulp.dest('dist'));
 });
 
@@ -79,8 +79,6 @@ gulp.task('connect', ['styles'], function () {
     .use(require('connect-livereload')({port: 35729}))
     .use(serveStatic('.tmp'))
     .use(serveStatic('app'))
-    // paths to bower_components should be relative to the current file
-    // e.g. in app/index.html you should use ../bower_components
     .use('/bower_components', serveStatic('bower_components'))
     .use(serveIndex('app'));
 
@@ -89,6 +87,27 @@ gulp.task('connect', ['styles'], function () {
     .on('listening', function () {
       console.log('Started connect web server on http://localhost:9000');
     });
+});
+
+
+
+gulp.task('connect:dist', function () {
+  var serveStatic = require('serve-static');
+  var serveIndex = require('serve-index');
+  var app = require('connect')()
+    .use(require('connect-livereload')({port: 35729}))
+    .use(serveStatic('dist'))
+    .use(serveIndex('dist'));
+
+  require('http').createServer(app)
+    .listen(9090)
+    .on('listening', function () {
+      console.log('Started connect web server on http://localhost:9090');
+    });
+});
+
+gulp.task('serve:dist', ['build','connect:dist', 'watch'], function () {
+  require('opn')('http://localhost:9090');
 });
 
 gulp.task('serve', ['connect', 'watch'], function () {
