@@ -72,6 +72,10 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
+gulp.task('serve', ['connect', 'watch'], function () {
+  require('opn')('http://localhost:9000');
+});
+
 gulp.task('connect', ['styles'], function () {
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
@@ -90,29 +94,30 @@ gulp.task('connect', ['styles'], function () {
 });
 
 
+// gulp.task('serve:dist', ['build','connect:dist', 'watch'], function () {
+//   require('opn')('http://localhost:9090');
+// });
 
-gulp.task('connect:dist', function () {
+gulp.task('serve:dist',['build'], function () {
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
+  //configure connect
   var app = require('connect')()
     .use(require('connect-livereload')({port: 35729}))
+    //serve everything from dist
     .use(serveStatic('dist'))
     .use(serveIndex('dist'));
 
+  //create the server, using connect
   require('http').createServer(app)
     .listen(9090)
     .on('listening', function () {
       console.log('Started connect web server on http://localhost:9090');
+      require('opn')('http://localhost:9090');
     });
 });
 
-gulp.task('serve:dist', ['build','connect:dist', 'watch'], function () {
-  require('opn')('http://localhost:9090');
-});
 
-gulp.task('serve', ['connect', 'watch'], function () {
-  require('opn')('http://localhost:9000');
-});
 
 // inject bower components
 gulp.task('wiredep', function () {
