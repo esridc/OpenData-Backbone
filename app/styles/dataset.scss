@@ -16,4 +16,24 @@
   #yuki-viz-tools {
     margin-right: 15px;
   }
+
+  #table-container {
+    margin-top: 25px;
+    thead th {
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    ul.pagination {
+      li {
+        a {
+          cursor: pointer;
+        }
+        &.disabled {
+          a {
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
 }

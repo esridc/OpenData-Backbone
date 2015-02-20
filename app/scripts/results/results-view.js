@@ -55,9 +55,11 @@
           e.stopPropagation();
           e.preventDefault();
           var page = $(e.target).closest('a').data('page');
-          var model = App.searchModel.clone();
-          model.set('page', page);
-          App.navigate(model.getRoute(false), { trigger: true });
+          //not sure why i was doing it this way...
+          //var model = App.searchModel.clone();
+          //App.navigate(model.getRoute(false), { trigger: true });
+          this.model.set('page', page);
+          App.search();
         }
       },
 

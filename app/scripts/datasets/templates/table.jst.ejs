@@ -1,0 +1,35 @@
+<h4>Showing <%= from.toLocaleString() %> to <%= to.toLocaleString() %> of <%= total.toLocaleString() %></h4>
+<div class="table-responsive">  
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <% _.each(fields, function (field) { %>
+          <% if (sortField === field.name) { %>
+            <th data-field-name="<%= field.name %>" class="<%= sortClass %>">
+              <%= field.alias || field.name %>
+              <span class="glyphicon small <%= sortIconClass %> text-muted" aria-hidden="true"></span>
+            </th>
+          <% } else { %>
+            <th data-field-name="<%= field.name %>">
+              <%= field.alias || field.name %>
+            </th>
+          <% } %>
+        <% }); %>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<nav>
+  <ul class="pagination">
+    <% if (pages.length > 1) { %>
+      <li id="page-prev" class="<%= firstPage %>"><a data-page="<%= prevPage %>"><span aria-hidden="true">&laquo;</span></a></li>
+      
+      <% _.each(pages, function (page) { %>
+        <li class="<%= page.active %>"><a class="page-number" data-page="<%= page.page %>"><%= page.page %></a></li>
+      <% }); %>
+
+      <li id="page-next" class="<%= lastPage %>"><a data-page="<%= nextPage %>"><span aria-hidden="true">&raquo;</span></a></li>
+    <% } %>
+  </ul>
+</nav>

@@ -76,7 +76,8 @@ gulp.task('serve', ['connect', 'watch'], function () {
   require('opn')('http://localhost:9000');
 });
 
-gulp.task('connect', ['styles'], function () {
+gulp.task('connect', ['styles', 'jst'], function () {
+
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
   var app = require('connect')()
@@ -176,6 +177,7 @@ var deps = [
   'bower_components/backbone.wreqr/lib/backbone.wreqr.js',
   'bower_components/marionette/lib/core/backbone.marionette.js',
   'bower_components/backbone-fetch-cache/backbone.fetch-cache.js',
+  'bower_components/typeahead.js/dist/typeahead.bundle.js',
   'bower_components/moment/moment.js',
   'test/lib/init.js',
   'app/scripts/app.js',
