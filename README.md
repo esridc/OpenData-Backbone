@@ -17,7 +17,6 @@ See it running here: [http://mjuniper.github.io/OpenData-Backbone/](http://mjuni
 # Roadmap
 Not a roadmap in the sense that these are features that will *definitely* be implemented; more of a list of potential improvements
 
-* add loading indicator and min height to results table
 * API v2
 * upgrade yuki
 * leaflet mapmanager with config flag (if we go this route, the mapmanager should load it's own dependencies)
