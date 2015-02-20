@@ -24,19 +24,22 @@
       model: Models.DatasetRow,
 
       getQueryUrl: function () {
-        //TODO: add paging stuff here for services that support it
-        //NOTE: for services that do not support pagination, we just fetch maxRecordCount - no paging
-
         var url = this.dataset.get('url');
         url += '/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson';
 
         if (this.supportsPagination) {
-          //Note that when you pass in one of these two parameters and orderByFields is left empty, 
-          //map service uses the object-id field to sort the result. 
-          //For a query layer with a pseudo column as the object-id field (e.g., FID), 
-          //you must provideorderByFields; otherwise the query fails
           url += '&resultOffset=' + this.page * this.perPage;
           url += '&resultRecordCount=' + this.perPage;
+          //NOTE: when you pass in one of the above two parameters and orderByFields is left empty, 
+          //map service uses the object-id field to sort the result. 
+          //For a query layer with a pseudo column as the object-id field (e.g., FID), 
+          //you must provide orderByFields; otherwise the query fails
+          if (this.dataset.get('object_id_field')) {
+            //NOTE: this still could fail 
+            //if the oid field has changed since it was harvested by open data
+            //or it is null (which should not happen...)
+            url += '&orderByFields=' + this.dataset.get('object_id_field');
+          }
         }
 
         return url;
@@ -49,7 +52,15 @@
       parse: function (resp) {
         // this.fields = resp.fields;
         // this.fieldAliases = resp.fieldAliases;
-        return resp.features;
+        var rows = resp.features;
+        if (!this.supportsPagination) {
+          //this is slightly crappy but 
+          //for datasets that don't support pagination
+          //we just show the first n rows with no pagination
+          //even though we got maxRecordCount rows
+          rows = _.first(rows, this.perPage);
+        }
+        return rows;
       }
 
     });

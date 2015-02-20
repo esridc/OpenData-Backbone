@@ -56,24 +56,27 @@
 
       templateHelpers: function () {
 
+        //defaults - this is what will be rendered if the dataset does not support pagination
         var obj = {
           firstPage: '',
           lastPage: '',
           prevPage: 0,
           nextPage: 0,
           pages: [],
-          showPagination: false
+          showPagination: false,
+          from: 1,
+          to: this.collection.perPage,
+          total: this.model.get('record_count')
         };
 
         if (this.collection.supportsPagination) {
-          //NOTE: quick and dirty first stab, not sure this is right
-
           var totalPages = Math.ceil(this.model.get('record_count') / this.collection.perPage);
+          //zero based page index
           var page = this.collection.page;
 
-          //don't show more than 10?
-          var start = ( totalPages > 10 && page > 6 ) ? page - 5 : 1;
-          var end = ( totalPages > start + 9 ) ? start + 9 : totalPages;
+          //don't show more than 10 pages in paginator?
+          var start = (totalPages > 10 && page > 6) ? page - 5 : 1;
+          var end = (totalPages > start + 9) ? start + 9 : totalPages;
 
           var active, pages = [];
           for (var i = start; i <= end; i++) {
@@ -81,25 +84,21 @@
             pages.push({ page: i, active: active });
           }
 
-          var prevPage = page;
-          if (page !== 1) { 
-            prevPage = page - 1;
-          }
-          
-          var nextPage = page + 1;
-          if (totalPages !== nextPage) {
-            nextPage = nextPage + 1;
-          }
+          var total = this.model.get('record_count');
+          var from = page * this.collection.perPage + 1;
+          var to = page * this.collection.perPage + this.collection.perPage;
+          to = (to <= total) ? to : total;
 
           obj = {
             firstPage: (page === 0) ? 'disabled' : '',
             lastPage: (totalPages === page + 1) ? 'disabled' : '',
-            prevUrl: '',
-            nextUrl: '',
-            prevPage: prevPage,
-            nextPage: nextPage,
+            prevPage: page,
+            nextPage: page + 2,
             pages: pages,
-            showPagination: true
+            showPagination: true,
+            from: from,
+            to: to,
+            total: total
           };
         }
 

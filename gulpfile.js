@@ -152,6 +152,7 @@ var deps = [
   'bower_components/backbone.wreqr/lib/backbone.wreqr.js',
   'bower_components/marionette/lib/core/backbone.marionette.js',
   'bower_components/backbone-fetch-cache/backbone.fetch-cache.js',
+  'bower_components/typeahead.js/dist/typeahead.bundle.js',
   'bower_components/moment/moment.js',
   'test/lib/init.js',
   'app/scripts/app.js',

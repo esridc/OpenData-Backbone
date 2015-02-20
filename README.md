@@ -18,10 +18,11 @@ See it running here: [http://mjuniper.github.io/OpenData-Backbone/](http://mjuni
 Not a roadmap in the sense that these are features that will *definitely* be implemented; more of a list of potential improvements
 
 * table
-  * marionette composite view
-  * styled with bootstrap
-  * click table header to sort
-  * pagination only if the service `supportsAdvancedPagination`, otherwise we show the first `n` rows
+  * fix busted tests
+  * merge to master
+  * deploy
 * API v2
+* upgrade yuki
+* click table header to sort
 * leaflet mapmanager with config flag (if we go this route, the mapmanager should load it's own dependencies)
 * more tests
