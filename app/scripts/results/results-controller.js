@@ -10,8 +10,8 @@
       initUi: function (options) {
         this.collection = new App.Models.DatasetCollection();
         this.collection.fetch({ cache: true });
-        var view = new ResultsModule.View({ model: App.searchModel, collection: this.collection });
-        App.layout.getRegion('main').show(view);
+        this.view = new ResultsModule.View({ model: App.searchModel, collection: this.collection });
+        App.layout.getRegion('main').show(this.view);
       }
 
     });

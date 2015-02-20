@@ -1,5 +1,14 @@
 #page-results {
-  tbody tr {
-    cursor: pointer;
+  .table-responsive {
+    min-height: 778px;
+    tbody tr {
+      cursor: pointer;
+      &.loading {
+        background-color: #fff;
+        .progress {
+          margin-top: 20px;
+        }
+      }
+    }
   }
 }

@@ -23,17 +23,45 @@
 
     });
 
+    ResultsModule.LoadingView = Marionette.ItemView.extend({ 
+
+      template: JST['results/templates/results-loading'],
+
+      tagName: 'tr',
+
+      className: 'loading'
+
+    });
+
+    ResultsModule.EmptyView = Marionette.ItemView.extend({ 
+
+      template: JST['results/templates/results-empty'],
+
+      tagName: 'tr'
+
+    });
+
     ResultsModule.View = Marionette.CompositeView.extend({ 
 
       initialize: function () {
         this.listenTo(this, 'childview:result:clicked', this.selectDataset);
       },
 
+      collectionIsLoading: true,
+
       template: JST['results/templates/results'],
 
       childView: ResultsModule.ItemView,
 
       childViewContainer: 'tbody',
+
+      getEmptyView: function () {
+        if (this.collectionIsLoading) {
+          return ResultsModule.LoadingView;
+        } else {
+          return ResultsModule.EmptyView;
+        }
+      },
 
       events: {
         'click ul.pagination a': 'onPageClicked'
@@ -43,7 +71,17 @@
         'change:total_count': 'render'
       },
 
+      collectionEvents: {
+        'sync': 'onCollectionSync',
+        'error': 'onCollectionSync'
+      },
+
       id: 'page-results',
+
+      onCollectionSync: function () {
+        this.collectionIsLoading = false;
+        this.render();
+      },
 
       selectDataset: function (childView, childModel) {
         App.navigate('/datasets/' + childModel.get('id'), { trigger: true });
