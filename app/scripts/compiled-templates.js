@@ -54,13 +54,13 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<h2>Showing ' +
+__p += '<h4>Showing ' +
 ((__t = ( from )) == null ? '' : __t) +
 ' to ' +
 ((__t = ( to )) == null ? '' : __t) +
 ' of ' +
 ((__t = ( total )) == null ? '' : __t) +
-'</h2>\n<div class="table-responsive">  \n  <table class="table table-striped table-bordered table-hover">\n    <thead>\n      <tr>\n        ';
+'</h4>\n<div class="table-responsive">  \n  <table class="table table-striped table-bordered table-hover">\n    <thead>\n      <tr>\n        ';
  _.each(fields, function (field) { ;
 __p += '\n          <th>' +
 ((__t = ( field.alias || field.name )) == null ? '' : __t) +

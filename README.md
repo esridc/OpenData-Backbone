@@ -17,10 +17,6 @@ See it running here: [http://mjuniper.github.io/OpenData-Backbone/](http://mjuni
 # Roadmap
 Not a roadmap in the sense that these are features that will *definitely* be implemented; more of a list of potential improvements
 
-* table
-  * fix busted tests
-  * merge to master
-  * deploy
 * API v2
 * upgrade yuki
 * click table header to sort
