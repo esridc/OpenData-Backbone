@@ -5,9 +5,12 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
 gulp.task('styles', function() {
+  //allow us to specify imports of bootstrap components
+  //without putting the whole path into our sass files
+  var sassPaths = ['./bower_components/bootstrap-sass-official/assets/stylesheets'];
   return gulp.src('app/styles/main.scss')
     .pipe(plugins.plumber())
-    .pipe(plugins.sass()) 
+    .pipe(plugins.sass({includePaths: sassPaths })) 
     .pipe(plugins.autoprefixer({browsers: ['last 1 version']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
