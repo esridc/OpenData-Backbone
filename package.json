@@ -22,7 +22,7 @@
     "gulp-jst-concat": "0.0.1",
     "gulp-livereload": "^2.0.0",
     "gulp-load-plugins": "^0.7.1",
-    "gulp-minify-html": "^0.1.6",
+    "gulp-minify-html": "0.1.7",
     "gulp-open": "^0.3.2",
     "gulp-plumber": "^0.6.3",
     "gulp-replace": "^0.4.0",

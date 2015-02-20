@@ -5,9 +5,12 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
 gulp.task('styles', function() {
+  //allow us to specify imports of bootstrap components
+  //without putting the whole path into our sass files
+  var sassPaths = ['./bower_components/bootstrap-sass-official/assets/stylesheets'];
   return gulp.src('app/styles/main.scss')
     .pipe(plugins.plumber())
-    .pipe(plugins.sass()) 
+    .pipe(plugins.sass({includePaths: sassPaths })) 
     .pipe(plugins.autoprefixer({browsers: ['last 1 version']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
@@ -40,7 +43,7 @@ gulp.task('html', ['styles'], function () {
     .pipe(plugins.if('*.css', cssChannel()))
     .pipe(assets.restore())
     .pipe(plugins.useref())
-    //.pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true, loose: true})))
+    .pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true})))
     .pipe(gulp.dest('dist'));
 });
 
@@ -72,15 +75,18 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
+gulp.task('serve', ['connect', 'watch'], function () {
+  require('opn')('http://localhost:9000');
+});
+
 gulp.task('connect', ['styles', 'jst'], function () {
+
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
   var app = require('connect')()
     .use(require('connect-livereload')({port: 35729}))
     .use(serveStatic('.tmp'))
     .use(serveStatic('app'))
-    // paths to bower_components should be relative to the current file
-    // e.g. in app/index.html you should use ../bower_components
     .use('/bower_components', serveStatic('bower_components'))
     .use(serveIndex('app'));
 
@@ -91,9 +97,31 @@ gulp.task('connect', ['styles', 'jst'], function () {
     });
 });
 
-gulp.task('serve', ['connect', 'watch'], function () {
-  require('opn')('http://localhost:9000');
+
+// gulp.task('serve:dist', ['build','connect:dist', 'watch'], function () {
+//   require('opn')('http://localhost:9090');
+// });
+
+gulp.task('serve:dist',['build'], function () {
+  var serveStatic = require('serve-static');
+  var serveIndex = require('serve-index');
+  //configure connect
+  var app = require('connect')()
+    .use(require('connect-livereload')({port: 35729}))
+    //serve everything from dist
+    .use(serveStatic('dist'))
+    .use(serveIndex('dist'));
+
+  //create the server, using connect
+  require('http').createServer(app)
+    .listen(9090)
+    .on('listening', function () {
+      console.log('Started connect web server on http://localhost:9090');
+      require('opn')('http://localhost:9090');
+    });
 });
+
+
 
 // inject bower components
 gulp.task('wiredep', function () {
