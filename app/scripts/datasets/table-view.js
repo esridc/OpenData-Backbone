@@ -35,7 +35,8 @@
       },
 
       events: {
-        'click ul.pagination li a': 'onPageClicked'
+        'click ul.pagination li a': 'onPageClicked',
+        'click thead th': 'sort'
       },
 
       collectionEvents: {
@@ -66,7 +67,10 @@
           showPagination: false,
           from: 1,
           to: this.collection.perPage,
-          total: this.model.get('record_count')
+          total: this.model.get('record_count'),
+          sortField: this.collection.orderBy,
+          sortClass: this.collection.orderByAsc ? 'sort_asc' : 'sort_desc',
+          sortIconClass: this.collection.orderByAsc ? 'glyphicon-arrow-down' : 'glyphicon-arrow-up',
         };
 
         if (this.collection.supportsPagination) {
@@ -98,7 +102,10 @@
             showPagination: true,
             from: from,
             to: to,
-            total: total
+            total: total,
+            sortField: this.collection.orderBy,
+            sortClass: this.collection.orderByAsc ? 'sort_asc' : 'sort_desc',
+            sortIconClass: this.collection.orderByAsc ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up',
           };
         }
 
@@ -113,6 +120,20 @@
         if (!li.hasClass('disabled') && !li.hasClass('active')) {
           var page = anchor.data('page') - 1;
           this.collection.page = page;
+          this.collection.fetch({ reset: true });
+        }
+      },
+
+      sort: function (e) {
+        var orderBy = $(e.target).data('fieldName');
+        if (orderBy) {
+          if (orderBy === this.collection.orderBy) {
+            this.collection.orderByAsc = !this.collection.orderByAsc;
+          } else {
+            this.collection.orderByAsc = true;
+          }
+          this.collection.page = 0;
+          this.collection.orderBy = orderBy;
           this.collection.fetch({ reset: true });
         }
       }

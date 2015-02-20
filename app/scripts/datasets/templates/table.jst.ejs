@@ -4,7 +4,16 @@
     <thead>
       <tr>
         <% _.each(fields, function (field) { %>
-          <th><%= field.alias || field.name %></th>
+          <% if (sortField === field.name) { %>
+            <th data-field-name="<%= field.name %>" class="<%= sortClass %>">
+              <%= field.alias || field.name %>
+              <span class="glyphicon small <%= sortIconClass %> text-muted" aria-hidden="true"></span>
+            </th>
+          <% } else { %>
+            <th data-field-name="<%= field.name %>">
+              <%= field.alias || field.name %>
+            </th>
+          <% } %>
         <% }); %>
       </tr>
     </thead>
