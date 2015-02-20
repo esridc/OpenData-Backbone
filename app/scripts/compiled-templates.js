@@ -55,11 +55,11 @@ var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<h4>Showing ' +
-((__t = ( from )) == null ? '' : __t) +
+((__t = ( from.toLocaleString() )) == null ? '' : __t) +
 ' to ' +
-((__t = ( to )) == null ? '' : __t) +
+((__t = ( to.toLocaleString() )) == null ? '' : __t) +
 ' of ' +
-((__t = ( total )) == null ? '' : __t) +
+((__t = ( total.toLocaleString() )) == null ? '' : __t) +
 '</h4>\n<div class="table-responsive">  \n  <table class="table table-striped table-bordered table-hover">\n    <thead>\n      <tr>\n        ';
  _.each(fields, function (field) { ;
 __p += '\n          <th>' +
@@ -151,7 +151,7 @@ with (obj) {
 __p += '<h2>Your search for <em>' +
 ((__t = ( q )) == null ? '' : __t) +
 '</em> yielded ' +
-((__t = ( total_count )) == null ? '' : __t) +
+((__t = ( total_count.toLocaleString() )) == null ? '' : __t) +
 ' datasets</h2>\n<div class="table-responsive">  \n  <table class="table table-striped table-bordered table-hover">\n    <thead>\n      <tr>\n        <th>NAME</th>\n        <th>OWNER</th>\n        <th>RECORDS</th>\n        <th>LAYER TYPE</th>\n        <th>VIEWS</th>\n        <th>CREATED</th>\n        <th>UPDATED</th>\n      </tr>\n    </thead>\n    <tbody></tbody>\n  </table>\n</div>\n<nav>\n  <ul class="pagination">\n    ';
  if (pages.length > 1) { ;
 __p += '\n      <li id="page-prev" class="' +
