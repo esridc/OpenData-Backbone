@@ -147,7 +147,8 @@
           nextUrl: nextUrl,
           prevPage: prevPage,
           nextPage: nextPage,
-          pages: pages
+          pages: pages,
+          collectionIsLoading: this.collectionIsLoading
         };
       }
 
