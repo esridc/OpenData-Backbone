@@ -11,12 +11,7 @@
         this.dataset = options.dataset;
         
         var queryCapabilities = this.dataset.get('advanced_query_capabilities');
-        //TODO: this is wrong - it should be supports_pagination but they changed the api!
-        this.supportsPagination = queryCapabilities && queryCapabilities.supportsPagination;
-        
-        if (queryCapabilities && !_.isUndefined(queryCapabilities.supports_pagination)) { 
-          window.alert('The API has been fixed. Time to update /entities/row-collection.js!');
-        }
+        this.supportsPagination = queryCapabilities && queryCapabilities.supports_pagination;
 
         this.orderBy = this.dataset.get('object_id_field');
       },

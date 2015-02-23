@@ -20,7 +20,7 @@ $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 // Components
 @import "bootstrap/component-animations";
-/*@import "bootstrap/dropdowns";*/
+@import "bootstrap/dropdowns";
 @import "bootstrap/button-groups";
 @import "bootstrap/input-groups";
 @import "bootstrap/navs";
