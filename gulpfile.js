@@ -33,18 +33,36 @@ gulp.task('jshint', function () {
 gulp.task('html', ['styles'], function () {
   var lazypipe = require('lazypipe');
   var cssChannel = lazypipe()
-    .pipe(plugins.csso)
-    .pipe(plugins.replace, 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts');
+    // optimizer
+    .pipe( plugins.csso)
+    // replace font paths
+    .pipe( plugins.replace, 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts')
+    ;
+    // rev the file name
+    //.pipe( plugins.rev );
+
   var assets = plugins.useref.assets({searchPath: '{.tmp,app}'});
 
+  //Why does this not work w plugins?
+  var gulpIgnore = require('gulp-ignore');
   return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe(plugins.if('*.js', plugins.uglify()))
-    .pipe(plugins.if('*.css', cssChannel()))
-    .pipe(assets.restore())
-    .pipe(plugins.useref())
-    .pipe(plugins.if('*.html', plugins.minifyHtml({conditionals: true})))
-    .pipe(gulp.dest('dist'));
+    .pipe( assets )
+    //.pipe( plugins.if('*.js', plugins.sourcemaps.init() ))
+    .pipe( plugins.if('*.js', plugins.uglify() ))
+    //.pipe( plugins.if('*.js', plugins.sourcemaps.write('./maps') ))
+    //rev the js file names
+    //.pipe( plugins.if('*.js', plugins.rev() ))
+
+    .pipe( plugins.if('*.css', cssChannel() ) )
+    .pipe( assets.restore() )
+    .pipe( plugins.useref() )
+    .pipe( plugins.if('*.html', plugins.minifyHtml({conditionals: true})) )
+
+    //replace the filenames rev'ed in the html file
+    //.pipe( plugins.revReplace() )
+    
+    //dump to dist
+    .pipe( gulp.dest('dist'));
 });
 
 gulp.task('images', function () {
@@ -98,9 +116,6 @@ gulp.task('connect', ['styles', 'jst'], function () {
 });
 
 
-// gulp.task('serve:dist', ['build','connect:dist', 'watch'], function () {
-//   require('opn')('http://localhost:9090');
-// });
 
 gulp.task('serve:dist',['build'], function () {
   var serveStatic = require('serve-static');
