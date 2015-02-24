@@ -26,6 +26,7 @@
     "esri": true,
     "dojo": true,
     "Yuki": true,
-    "Bloodhound": true
+    "Bloodhound": true,
+    "include":true
   }
 }
