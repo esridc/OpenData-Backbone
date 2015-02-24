@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>opendata starter backbone</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
+    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
@@ -48,10 +48,8 @@
 
 
       <div class="footer">
-        <div class="col-lg-4">
-          <p>♥ from the <a href="http://dc.esri.com/">Open Data team</a></p>
-        </div>
-        <div class="col-lg-8">
+        <div class="col-lg-12 col-md-12">
+          <p style="float:left;">♥ from the <a href="http://dc.esri.com/">Open Data team</a></p>
           <p style="float:right;">Image <a href="https://www.flickr.com/photos/davebloggs007/14389618573">CC Dave Blogs</a></p>
         </div>
         
@@ -82,14 +80,12 @@
     <script src="../bower_components/moment/moment.js"></script>
     <script src="../bower_components/backbone-fetch-cache/backbone.fetch-cache.js"></script>
     <script src="../bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
+    <script src="../bower_components/scriptinclude/include.js"></script>
     <!-- endbower -->
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
     <script src="scripts/lib/yuki.js"></script>
     <script src="scripts/lib/dojo-config.js"></script>
     <!-- endbuild -->
-
-    <script src="http://jsdev.arcgis.com/3.13compact/"></script>
-
 
     <!-- build:js scripts/main.js -->        
     <script src="scripts/app.js"></script>
@@ -119,6 +115,9 @@
     <script src="scripts/error/error-module.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <!--  <script async src="http://jsdev.arcgis.com/3.13compact/"></script> -->
+
 
 </body>
 </html>
