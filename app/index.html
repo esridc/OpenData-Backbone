@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>opendata starter backbone</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
@@ -18,7 +18,9 @@
 
     <!-- build:js scripts/header.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="scripts/lib/loadcss.js"></script>
     <!-- endbuild -->
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -67,7 +69,7 @@
     </script>
     -->
 
-    <link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css">
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -115,8 +117,12 @@
     <script src="scripts/error/error-module.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+    <script>loadCSS("//js.arcgis.com/3.13/esri/css/jsapi.css");</script>
 
-    <!--  <script async src="http://jsdev.arcgis.com/3.13compact/"></script> -->
+    <!-- 
+      <link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css">
+     <script async src="http://jsdev.arcgis.com/3.13compact/"></script> 
+     -->
 
 
 </body>

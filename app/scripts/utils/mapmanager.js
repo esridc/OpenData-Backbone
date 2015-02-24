@@ -74,7 +74,7 @@
               opts.map.setExtent(extent);
             }
             self.proxyEvent('map:load');
-        }
+        };
 
         //proxy events
         this.map.on('load', dojo.hitch(this, onLoad));
