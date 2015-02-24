@@ -47,9 +47,9 @@ gulp.task('html', ['styles'], function () {
   var gulpIgnore = require('gulp-ignore');
   return gulp.src('app/*.html')
     .pipe( assets )
-    //.pipe( plugins.if('*.js', plugins.sourcemaps.init() ))
+    .pipe( plugins.if('*.js', plugins.sourcemaps.init() ))
     .pipe( plugins.if('*.js', plugins.uglify() ))
-    //.pipe( plugins.if('*.js', plugins.sourcemaps.write('./maps') ))
+    .pipe( plugins.if('*.js', plugins.sourcemaps.write('./maps') ))
     //rev the js file names
     //.pipe( plugins.if('*.js', plugins.rev() ))
 
@@ -76,7 +76,7 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-    .pipe(plugins.filter('**/*.{eot,svg,ttf,woff}'))
+    .pipe(plugins.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe(plugins.flatten())
     .pipe(gulp.dest('dist/fonts'));
 });
@@ -86,6 +86,7 @@ gulp.task('extras', function () {
     'app/*.*',
     'app/scripts/lib/plugins/**/*.*',
     '!app/*.html'
+
   ], {
     base: 'app/'
   }).pipe(gulp.dest('dist'));
@@ -176,16 +177,18 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
+gulp.task('deploy', [ 'ghPages' ], function () {
+  return gulp.src('app/index.html')
+    .pipe(plugins.open('', {url: 'http://dbouwman.github.io/OpenData-Backbone/'}));
+});
+
 gulp.task('ghPages', [ 'build' ], function () {
   return gulp.src('dist/**/*')
     .pipe(plugins.ghPages());
 });
 
-//composition FTW!
-gulp.task('deploy', [ 'ghPages' ], function () {
-  return gulp.src('app/index.html')
-    .pipe(plugins.open('', {url: 'http://mjuniper.github.io/OpenData-Backbone/'}));
-});
+
+
 
 var deps = [
   'bower_components/jquery/dist/jquery.js',

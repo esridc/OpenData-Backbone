@@ -10,14 +10,34 @@
         _.bindAll(this, 'updateStyle');
 
         this.globalChannel = Backbone.Wreqr.radio.channel('global');
+        //load dojo and start the map
+        this._loadDojo();
+        App.reqres.setHandler('smaps:update:style', this.updateStyle);
 
+      },
+
+      /**
+       * load dojo, resolve a promise when it's ready to roll
+       */
+      _loadDojo: function(){
         var dfd = $.Deferred();
         this.dojoReady = dfd.promise();
-        require(['esri/map', 'esri/layers/FeatureLayer', 'plugins/smartMapping', 'dojo/domReady!'], function(Map) {
+        //check if dojo is loaded...
+        if( !window.dojo ){
+          //if not, inject a script tag, and then require in things
+          include('//js.arcgis.com/3.13compact/init.js', function(){
+            //now that require is present, load in the other things we need
+            require(['esri/map', 'esri/layers/FeatureLayer', 'plugins/smartMapping', 'dojo/domReady!'], function(Map) {
+              dfd.resolve();
+            });
+          }); 
+
+        }else{
+          //it's loaded
           dfd.resolve();
-        });
-        App.reqres.setHandler('smaps:update:style', this.updateStyle);
+        }
       },
+
 
       onBeforeDestroy: function () {
         if (this.map) {
@@ -32,24 +52,38 @@
       },
 
       createMap: function (mapDiv, options) {
+        var self = this;
         var mapOpts = {
           center: [ -56.049, 38.485 ],
           zoom: 3,
-          basemap: 'dark-gray'
+          basemap: 'dark-gray',
+          smartNavigation:false,
+          navigationMode: 'css-transforms',
+          fitExtent:true,
+          minZoom: 2,
+          wrapAround180:true
         };
 
         this.map = new esri.Map(mapDiv, mapOpts);
-
-        if (options.coords) {
-          var extent = new esri.geometry.Extent(options.coords[0][0], options.coords[0][1], options.coords[1][0], options.coords[1][1], new esri.SpatialReference({ wkid: 4326 }));
-          this.map.setExtent(extent);
-        }
+        
+       
+        var onLoad = function(opts){
+            opts.map.disableScrollWheelZoom();
+            if (options.coords) {
+              var extent = new esri.geometry.Extent(options.coords[0][0], options.coords[0][1], options.coords[1][0], options.coords[1][1], new esri.SpatialReference({ wkid: 4326 }));
+              opts.map.setExtent(extent);
+            }
+            self.proxyEvent('map:load');
+        };
 
         //proxy events
-        this.map.on('load', dojo.hitch(this, this.proxyEvent, 'map:load'));
+        this.map.on('load', dojo.hitch(this, onLoad));
         this.map.on('extent-change', dojo.hitch(this, this.proxyEvent, 'map:extent-change'));
         this.map.on('layer-add', dojo.hitch(this, this.proxyEvent, 'map:layer-add'));
       },
+
+
+
 
       getDatasetInfoTemplate: function (dataset) {
         //var datasetName = dataset.get('name');
