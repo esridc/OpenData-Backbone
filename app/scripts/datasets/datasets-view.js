@@ -50,7 +50,7 @@
             self.mapManager.createMap('map', { coords: self.model.get('extent').coordinates });
             self.mapManager.addDataset(self.model);
 
-            self.initSmaps();
+            //self.initSmaps();
           });
         }
       },

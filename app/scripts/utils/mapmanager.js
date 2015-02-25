@@ -92,16 +92,26 @@
       },
 
       getDatasetLayerOpts: function (dataset) {
-        return { 
+        var opts = 
+         { 
           mode: esri.layers.FeatureLayer.MODE_AUTO,
           outFields: '*',
-          infoTemplate: this.getDatasetInfoTemplate(dataset)
+          infoTemplate: this.getDatasetInfoTemplate(dataset),
+          geometryType: dataset.get('geometry_type')
         };
+        //add the default symbol
+        this._addDefaultSymbols(opts);
+        return opts;
       },
 
       addDataset: function (dataset) {
         var opts = this.getDatasetLayerOpts(dataset);
         this.datasetLayer = new esri.layers.FeatureLayer(dataset.get('url'), opts);
+        //apply default renderer
+        if(opts.layerDefinition && opts.layerDefinition.drawingInfo){
+          //apply renderers
+          this.datasetLayer.setRenderer(this._createRendererFromJson(opts.layerDefinition.drawingInfo.renderer));
+        }
 
         this.datasetLayer.on('load', this.onLoadDataset);
 
@@ -112,6 +122,8 @@
         this.datasetLayer.on('update-end', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:update-end'));
 
         this.map.addLayer(this.datasetLayer);
+
+
       },
 
       onLoadDataset: function (evt) {
@@ -159,7 +171,62 @@
         }
 
         return dfd.promise();
+      },
+
+      /**
+       * Append in default layer styling by adding/updateing 
+       * layerOptions.layerDefinition.drawingInfo and setting it's properties
+       * as though it was set from webmap.
+       * @param {Object} layerOptions Json hash of layer properties. Either from a webmap
+       * or constructed for a layer in a feature service
+       */
+      _addDefaultSymbols: function(layerOptions){
+          //add the layerDefinition node
+          if(!layerOptions.layerDefinition){
+              layerOptions.layerDefinition = {};
+              layerOptions.layerDefinition.drawingInfo = {};
+          }
+          if(!layerOptions.layerDefinition.drawingInfo){
+              layerOptions.layerDefinition.drawingInfo = {};
+          }
+
+          //depending on the type, load in the default renderer as json
+          switch (layerOptions.geometryType){
+              case 'esriGeometryPolygon':
+                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPolygonRenderer;
+                  break;
+              case 'esriGeometryPoint':
+                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPointRenderer;
+                  break;
+              case 'esriGeometryMultipoint':
+                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPointRenderer;
+                  break;
+              case 'esriGeometryPolyline':
+                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultLineRenderer;
+                  break;
+              case 'esriGeometryLine':
+                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultLineRenderer;
+                  break;
+              default: 
+                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPolygonRenderer;
+          }
+          return layerOptions;
+      },
+
+      _createRendererFromJson: function(rendererJson){
+          var renderer;
+          switch (rendererJson.type){
+              case 'simple':
+                  //create the default symbol
+                  renderer = new esri.renderer.SimpleRenderer(rendererJson);
+                  break;
+              case 'classBreaks':
+                  renderer = new esri.renderer.ClassBreaksRenderer(rendererJson);
+                  break;
+          }
+          return renderer;
       }
+
       
     });
 
