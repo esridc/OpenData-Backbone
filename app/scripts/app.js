@@ -76,7 +76,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
             return url.replace('%QUERY', query);
           },
           filter: function(response) {
-            return response.data;
+            return response ? response.data : [];
           }
         }
       });
