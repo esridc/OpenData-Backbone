@@ -59,6 +59,8 @@
         if (e.which === 13) {
           e.preventDefault();
 
+          this.ui.search.typeahead('close');
+
           this.updateModel();
 
           this.search();
