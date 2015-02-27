@@ -42,7 +42,7 @@
       // },
 
       onDomRefresh: function () {
-        if (this.model.get('layer_type').toLowerCase() !== 'table') {
+        if (this.model.get('item_type').toLowerCase() !== 'table') {
           var self = this;
           // TODO: would be nice to encapsulate this in mapmanager so consumers wouldn't have to know to do it
           this.ui.mapDiv.show();
