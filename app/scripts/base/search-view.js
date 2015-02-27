@@ -71,6 +71,11 @@
         this.updateModel();
       },
 
+      onSearchButtonClick: function () {
+        this.updateModel();
+        this.search();
+      },
+
       search: function () {
         App.search();
       }
