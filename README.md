@@ -4,8 +4,9 @@ A sample application demonstrating how an application might be built against the
 See it running here: [http://mjuniper.github.io/OpenData-Backbone/](http://mjuniper.github.io/OpenData-Backbone/)
 
 # Prerequisites
-1. nodejs and npm
-2. phantomjs (for tests)
+1. [nodejs and npm](http://nodejs.org/)
+1. [bower](http://bower.io/) (`npm install -g bower`)
+1. [phantomjs](http://phantomjs.org/) (for tests)
 
 # Setup
 1. Clone the repo: `git clone git@github.com:mjuniper/OpenData-Backbone.git`
