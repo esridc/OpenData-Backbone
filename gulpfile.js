@@ -16,9 +16,18 @@ gulp.task('styles', function() {
 });
 
 gulp.task('jst', function () {
+  // var os = require('os');
+
+  // var renameString = '^.*\/app\/scripts\/(.*).jst.ejs$';
+  // if(os.platform()==='win32'){
+  //   console.log('using win32 regex');
+  //    renameString = "^.*\\app\\scripts\\(.*).jst.ejs$";
+  // }
+
   return gulp.src('./app/scripts/**/*.jst.ejs')
+    .pipe(plugins.slash())
     .pipe(plugins.jstConcat('compiled-templates.js', {
-      renameKeys: ['^.*\/app\/scripts\/(.*).jst.ejs$', '$1']
+      renameKeys: [ '^.*\/app\/scripts\/(.*).jst.ejs$', '$1']
     }))
     .pipe(gulp.dest('./app/scripts'));
 });
