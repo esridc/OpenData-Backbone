@@ -59,6 +59,8 @@
         if (e.which === 13) {
           e.preventDefault();
 
+          this.ui.search.typeahead('close');
+
           this.updateModel();
 
           this.search();
@@ -67,6 +69,11 @@
 
       onKeyUp: function () {
         this.updateModel();
+      },
+
+      onSearchButtonClick: function () {
+        this.updateModel();
+        this.search();
       },
 
       search: function () {
