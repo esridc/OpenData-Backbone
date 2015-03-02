@@ -88,7 +88,7 @@
       getDatasetInfoTemplate: function (dataset) {
         //var datasetName = dataset.get('name');
         var displayFieldName = dataset.get('display_field');
-        var title = displayFieldName ? '${' + displayFieldName + '}' : 'Attributes'
+        var title = displayFieldName ? '${' + displayFieldName + '}' : 'Attributes';
         return new esri.InfoTemplate(title, '${*}');
       },
 
