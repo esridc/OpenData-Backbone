@@ -27,6 +27,7 @@
     "dojo": true,
     "Yuki": true,
     "Bloodhound": true,
+    "util":true,
     "include":true
   }
 }
