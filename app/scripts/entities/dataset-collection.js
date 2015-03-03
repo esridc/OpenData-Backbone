@@ -14,6 +14,7 @@
       },
 
       parse: function (resp) {
+        //apply the metadata to the searchmodel
         App.searchModel.set(_.extend(resp.metadata.query_parameters, resp.metadata.stats));
         return resp.data;
       }
