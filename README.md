@@ -1,8 +1,6 @@
 # OpenData-Backbone
 A sample application demonstrating how an application might be built against the Open Data API using Backbone.js and Marionette.js.
 
-See it running here: [http://mjuniper.github.io/OpenData-Backbone/](http://mjuniper.github.io/OpenData-Backbone/)
-
 # Prerequisites
 1. [nodejs and npm](http://nodejs.org/)
 1. [bower](http://bower.io/) (`npm install -g bower`)
