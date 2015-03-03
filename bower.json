@@ -12,5 +12,8 @@
     "typeahead.js": "~0.10.5",
     "jquery": "~2.1.3",
     "scriptinclude": "~1.0.0"
+  },
+  "resolutions": {
+    "underscore": "~1.7.0"
   }
 }

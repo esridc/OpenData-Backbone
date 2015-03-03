@@ -7,10 +7,6 @@
           
     Models.DatasetModel = Backbone.Model.extend({
 
-      initialize: function () {
-        this.on('sync', this.onSync);
-      },
-
       defaults: {
         id: '',
         name: '',
