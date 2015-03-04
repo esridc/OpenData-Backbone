@@ -21,8 +21,7 @@
         //create an object containing only the attributes we need to generate the querystring
         var obj = _.pick(this.toJSON(), this.queryStringParams);
         //generate querystring parameters from the object
-        var queryString = $.param(obj);
-        return queryString;
+        return $.param(obj);
       },
 
       getRoute: function (api) {
