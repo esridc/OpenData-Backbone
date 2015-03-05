@@ -18,8 +18,6 @@
     "gulp-if": "^1.2.1",
     "gulp-ignore": "~1.2.1",
     "gulp-imagemin": "^1.2.1",
-    "gulp-jasmine": "^2.0.0",
-    "gulp-jasmine-phantom": "^1.1.1",
     "gulp-jshint": "^1.5.3",
     "gulp-jst-concat": "0.0.1",
     "gulp-livereload": "^2.0.0",
