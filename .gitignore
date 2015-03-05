@@ -6,3 +6,4 @@ test/bower_components
 test/specRunner.html
 dist
 app/scripts/compiled-templates.js
+test/coverage
