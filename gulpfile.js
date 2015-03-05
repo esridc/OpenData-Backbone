@@ -4,6 +4,8 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
+var karma = require('karma').server;
+
 gulp.task('styles', function() {
   //allow us to specify imports of bootstrap components
   //without putting the whole path into our sass files
@@ -234,11 +236,19 @@ var deps = [
   'app/scripts/error/error-module.js'
 ];
 
-gulp.task('test', function () {
-  return gulp.src('test/spec/**/*.spec.js')
-    .pipe(plugins.jasminePhantom({
-      integration: true,
-      vendor: deps,
-      keepRunner: 'test/'
-    }));
+// gulp.task('test', function () {
+//   return gulp.src('test/spec/**/*.spec.js')
+//     .pipe(plugins.jasminePhantom({
+//       integration: true,
+//       vendor: deps,
+//       keepRunner: 'test/'
+//     }));
+// });
+
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, done);
 });
+
