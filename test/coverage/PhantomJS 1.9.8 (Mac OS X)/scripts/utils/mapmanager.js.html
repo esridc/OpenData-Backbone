@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/utils/mapmanager.js</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="../../prettify.css">
+
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">scripts/utils/mapmanager.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">13.19% <small>(12 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">5% <small>(2 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">23.81% <small>(5 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">13.19% <small>(12 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/utils/</a> &#187; mapmanager.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {
+    
+  'use strict';
+&nbsp;
+  MyOD.module('Utils', function (Utils, App, Backbone, Marionette, $, _) {
+&nbsp;
+    Utils.MapManager = Marionette.Object.extend({
+      
+      initialize: function () {
+        _.bindAll(this, 'updateStyle');
+&nbsp;
+        this.globalChannel = Backbone.Wreqr.radio.channel('global');
+        //load dojo and start the map
+        this._loadDojo();
+        App.reqres.setHandler('smaps:update:style', this.updateStyle);
+&nbsp;
+      },
+&nbsp;
+      /**
+       * load dojo, resolve a promise when it's ready to roll
+       */
+      _loadDojo: function(){
+        var dfd = $.Deferred();
+        this.dojoReady = dfd.promise();
+        //check if dojo is loaded...
+        <span class="missing-if-branch" title="if path not taken" >I</span>if( !window.dojo ){
+          //if not, inject a script tag, and then require in things
+<span class="cstat-no" title="statement not covered" >          include('//js.arcgis.com/3.13compact/init.js', <span class="fstat-no" title="function not covered" >function(){</span></span>
+            //now that require is present, load in the other things we need
+<span class="cstat-no" title="statement not covered" >            require(['esri/map', 'esri/layers/FeatureLayer', 'plugins/smartMapping', 'dojo/domReady!'], <span class="fstat-no" title="function not covered" >function(Map) {</span></span>
+<span class="cstat-no" title="statement not covered" >              dfd.resolve();</span>
+            });
+          }); 
+&nbsp;
+        }else{
+          //it's loaded
+          dfd.resolve();
+        }
+      },
+&nbsp;
+&nbsp;
+      onBeforeDestroy: function () {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.map) {
+<span class="cstat-no" title="statement not covered" >          this.map.destroy();</span>
+        }
+      },
+&nbsp;
+      proxyEvent: <span class="fstat-no" title="function not covered" >function (evtName, evt) {</span>
+<span class="cstat-no" title="statement not covered" >        this.globalChannel.vent.trigger(evtName, evt);</span>
+        //OR (if everything that will listen has a reference to this)
+        //this.trigger(evtName, evt);
+      },
+&nbsp;
+      createMap: <span class="fstat-no" title="function not covered" >function (mapDiv, options) {</span>
+<span class="cstat-no" title="statement not covered" >        var self = this;</span>
+<span class="cstat-no" title="statement not covered" >        var mapOpts = {</span>
+          center: [ -56.049, 38.485 ],
+          zoom: 3,
+          basemap: 'dark-gray',
+          smartNavigation:false,
+          navigationMode: 'css-transforms',
+          fitExtent:true,
+          minZoom: 2,
+          wrapAround180:true
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.map = new esri.Map(mapDiv, mapOpts);</span>
+        
+       
+<span class="cstat-no" title="statement not covered" >        var onLoad = <span class="fstat-no" title="function not covered" >function(opts){</span></span>
+<span class="cstat-no" title="statement not covered" >            opts.map.disableScrollWheelZoom();</span>
+<span class="cstat-no" title="statement not covered" >            if (options.coords) {</span>
+<span class="cstat-no" title="statement not covered" >              var extent = new esri.geometry.Extent(options.coords[0][0], options.coords[0][1], options.coords[1][0], options.coords[1][1], new esri.SpatialReference({ wkid: 4326 }));</span>
+<span class="cstat-no" title="statement not covered" >              opts.map.setExtent(extent);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            self.proxyEvent('map:load');</span>
+        };
+&nbsp;
+        //proxy events
+<span class="cstat-no" title="statement not covered" >        this.map.on('load', dojo.hitch(this, onLoad));</span>
+<span class="cstat-no" title="statement not covered" >        this.map.on('extent-change', dojo.hitch(this, this.proxyEvent, 'map:extent-change'));</span>
+<span class="cstat-no" title="statement not covered" >        this.map.on('layer-add', dojo.hitch(this, this.proxyEvent, 'map:layer-add'));</span>
+      },
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+      getDatasetInfoTemplate: <span class="fstat-no" title="function not covered" >function (dataset) {</span>
+        //var datasetName = dataset.get('name');
+<span class="cstat-no" title="statement not covered" >        var displayFieldName = dataset.get('display_field');</span>
+<span class="cstat-no" title="statement not covered" >        var title = displayFieldName ? '${' + displayFieldName + '}' : 'Attributes';</span>
+<span class="cstat-no" title="statement not covered" >        return new esri.InfoTemplate(title, '${*}');</span>
+      },
+&nbsp;
+      getDatasetLayerOpts: <span class="fstat-no" title="function not covered" >function (dataset) {</span>
+<span class="cstat-no" title="statement not covered" >        var opts = </span>
+         { 
+          mode: esri.layers.FeatureLayer.MODE_AUTO,
+          outFields: '*',
+          infoTemplate: this.getDatasetInfoTemplate(dataset),
+          geometryType: dataset.get('geometry_type')
+        };
+        //add the default symbol
+<span class="cstat-no" title="statement not covered" >        this._addDefaultSymbols(opts);</span>
+<span class="cstat-no" title="statement not covered" >        return opts;</span>
+      },
+&nbsp;
+      addDataset: <span class="fstat-no" title="function not covered" >function (dataset) {</span>
+<span class="cstat-no" title="statement not covered" >        var opts = this.getDatasetLayerOpts(dataset);</span>
+<span class="cstat-no" title="statement not covered" >        this.datasetLayer = new esri.layers.FeatureLayer(dataset.get('url'), opts);</span>
+        //apply default renderer
+<span class="cstat-no" title="statement not covered" >        if(opts.layerDefinition &amp;&amp; opts.layerDefinition.drawingInfo){</span>
+          //apply renderers
+<span class="cstat-no" title="statement not covered" >          this.datasetLayer.setRenderer(this._createRendererFromJson(opts.layerDefinition.drawingInfo.renderer));</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.datasetLayer.on('load', this.onLoadDataset);</span>
+&nbsp;
+        //proxy events
+<span class="cstat-no" title="statement not covered" >        this.datasetLayer.on('load', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:load'));</span>
+<span class="cstat-no" title="statement not covered" >        this.datasetLayer.on('click', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:click'));</span>
+<span class="cstat-no" title="statement not covered" >        this.datasetLayer.on('query-limit-exceeded', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:query-limit-exceeded'));</span>
+<span class="cstat-no" title="statement not covered" >        this.datasetLayer.on('update-end', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:update-end'));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.map.addLayer(this.datasetLayer);</span>
+&nbsp;
+&nbsp;
+      },
+&nbsp;
+      onLoadDataset: <span class="fstat-no" title="function not covered" >function (evt) {</span>
+        //squash scale ranges - we need the layer to draw at all scales
+<span class="cstat-no" title="statement not covered" >        evt.layer.minScale = 0; </span>
+<span class="cstat-no" title="statement not covered" >        evt.layer.maxScale = 0;</span>
+      },
+&nbsp;
+      updateStyle: <span class="fstat-no" title="function not covered" >function (opts) {</span>
+<span class="cstat-no" title="statement not covered" >        var dfd = $.Deferred();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var layer = opts.layer = this.datasetLayer;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _applyRenderer = <span class="fstat-no" title="function not covered" >function(smap){</span></span>
+<span class="cstat-no" title="statement not covered" >          layer.setRenderer(smap.renderer);</span>
+&nbsp;
+          //check if refresh needed, else redraw
+<span class="cstat-no" title="statement not covered" >          if ( layer.graphics &amp;&amp; layer.graphics.length ) {</span>
+<span class="cstat-no" title="statement not covered" >            if (layer.graphics[0].attributes[ opts.field ]) {</span>
+<span class="cstat-no" title="statement not covered" >              layer.redraw();</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              layer.refresh();</span>
+            }
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          dfd.resolve(smap.renderer);</span>
+        };
+&nbsp;
+          
+<span class="cstat-no" title="statement not covered" >        if (opts.type === 'polygon'){</span>
+<span class="cstat-no" title="statement not covered" >          esri.renderer.smartMapping.createClassedColorRenderer(opts)</span>
+            .then(<span class="fstat-no" title="function not covered" >function(renderer){</span>
+<span class="cstat-no" title="statement not covered" >              _applyRenderer( renderer );</span>
+            });
+        } else <span class="cstat-no" title="statement not covered" >if (opts.type === 'point' &amp;&amp; !opts.heatmap){</span>
+<span class="cstat-no" title="statement not covered" >          esri.renderer.smartMapping.createClassedSizeRenderer(opts)</span>
+            .then(<span class="fstat-no" title="function not covered" >function(renderer){</span>
+<span class="cstat-no" title="statement not covered" >              _applyRenderer( renderer );</span>
+            });
+        } else <span class="cstat-no" title="statement not covered" >if (opts.type === 'point' &amp;&amp; opts.heatmap) {</span>
+<span class="cstat-no" title="statement not covered" >          esri.renderer.smartMapping.createHeatmapRenderer(opts)</span>
+            .then(<span class="fstat-no" title="function not covered" >function(renderer){</span>
+<span class="cstat-no" title="statement not covered" >              _applyRenderer( renderer );</span>
+            });
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return dfd.promise();</span>
+      },
+&nbsp;
+      /**
+       * Append in default layer styling by adding/updateing 
+       * layerOptions.layerDefinition.drawingInfo and setting it's properties
+       * as though it was set from webmap.
+       * @param {Object} layerOptions Json hash of layer properties. Either from a webmap
+       * or constructed for a layer in a feature service
+       */
+      _addDefaultSymbols: <span class="fstat-no" title="function not covered" >function(layerOptions){</span>
+          //add the layerDefinition node
+<span class="cstat-no" title="statement not covered" >          if(!layerOptions.layerDefinition){</span>
+<span class="cstat-no" title="statement not covered" >              layerOptions.layerDefinition = {};</span>
+<span class="cstat-no" title="statement not covered" >              layerOptions.layerDefinition.drawingInfo = {};</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if(!layerOptions.layerDefinition.drawingInfo){</span>
+<span class="cstat-no" title="statement not covered" >              layerOptions.layerDefinition.drawingInfo = {};</span>
+          }
+&nbsp;
+          //depending on the type, load in the default renderer as json
+<span class="cstat-no" title="statement not covered" >          switch (layerOptions.geometryType){</span>
+              case 'esriGeometryPolygon':
+<span class="cstat-no" title="statement not covered" >                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPolygonRenderer;</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+              case 'esriGeometryPoint':
+<span class="cstat-no" title="statement not covered" >                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPointRenderer;</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+              case 'esriGeometryMultipoint':
+<span class="cstat-no" title="statement not covered" >                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPointRenderer;</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+              case 'esriGeometryPolyline':
+<span class="cstat-no" title="statement not covered" >                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultLineRenderer;</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+              case 'esriGeometryLine':
+<span class="cstat-no" title="statement not covered" >                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultLineRenderer;</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+              default: 
+<span class="cstat-no" title="statement not covered" >                  layerOptions.layerDefinition.drawingInfo.renderer = util.defaults.defaultPolygonRenderer;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return layerOptions;</span>
+      },
+&nbsp;
+      _createRendererFromJson: <span class="fstat-no" title="function not covered" >function(rendererJson){</span>
+<span class="cstat-no" title="statement not covered" >          var renderer;</span>
+<span class="cstat-no" title="statement not covered" >          switch (rendererJson.type){</span>
+              case 'simple':
+                  //create the default symbol
+<span class="cstat-no" title="statement not covered" >                  renderer = new esri.renderer.SimpleRenderer(rendererJson);</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+              case 'classBreaks':
+<span class="cstat-no" title="statement not covered" >                  renderer = new esri.renderer.ClassBreaksRenderer(rendererJson);</span>
+<span class="cstat-no" title="statement not covered" >                  break;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return renderer;</span>
+      }
+&nbsp;
+      
+    });
+&nbsp;
+  });
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 05 2015 12:33:50 GMT-0700 (MST)</div>
+</div>
+
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+
+<script src="../../sorter.js"></script>
+</body>
+</html>

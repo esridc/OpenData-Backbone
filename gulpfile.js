@@ -200,8 +200,7 @@ gulp.task('ghPages', [ 'build' ], function () {
 
 gulp.task('test', function (done) {
   karma.start({
-    configFile: __dirname + '/test/karma.conf.js',
-    singleRun: true
+    configFile: __dirname + '/test/karma.conf.js'
   }, done);
 });
 
