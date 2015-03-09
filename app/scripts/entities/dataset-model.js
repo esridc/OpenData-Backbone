@@ -22,8 +22,7 @@
       },
 
       parse: function (response) {
-        var data = response.data || response;
-        return data;
+        return response.data || response;
       },
 
       url: function () {
