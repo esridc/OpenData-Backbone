@@ -14,7 +14,6 @@ gulp.task('styles', function() {
     .pipe(plugins.plumber())
     .pipe(plugins.sass({includePaths: sassPaths, errLogToConsole: true })) 
     .pipe(plugins.autoprefixer({browsers: ['last 1 version']}))
-    .pipe(plugins.plumber.stop())
     .pipe(gulp.dest('.tmp/styles'));
 });
 
