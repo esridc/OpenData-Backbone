@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
@@ -15,39 +15,39 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../bower_components/jquery/dist/jquery.js',
-      '../bower_components/underscore/underscore.js',
-      '../bower_components/backbone/backbone.js',
-      '../bower_components/backbone.babysitter/lib/backbone.babysitter.js',
-      '../bower_components/backbone.wreqr/lib/backbone.wreqr.js',
-      '../bower_components/marionette/lib/core/backbone.marionette.js',
-      '../bower_components/backbone-fetch-cache/backbone.fetch-cache.js',
-      '../bower_components/typeahead.js/dist/typeahead.bundle.js',
-      '../bower_components/moment/moment.js',
-      '../test/lib/init.js',
-      '../app/scripts/app.js',
-      '../app/scripts/utils/mapmanager.js',
-      '../app/scripts/base/search-view.js',
-      '../app/scripts/entities/search-model.js',
-      '../app/scripts/app-config.js',
-      '../app/scripts/compiled-templates.js',
-      '../app/scripts/header-search-view.js',
-      '../app/scripts/app-layout.js',
-      '../app/scripts/home/home-view.js',
-      '../app/scripts/home/home-controller.js',
-      '../app/scripts/home/home-module.js',
-      '../app/scripts/entities/dataset-model.js',
-      '../app/scripts/entities/dataset-collection.js',
-      '../app/scripts/results/results-view.js',
-      '../app/scripts/results/results-controller.js',
-      '../app/scripts/results/results-module.js',
-      '../app/scripts/datasets/datasets-view.js',
-      '../app/scripts/datasets/datasets-controller.js',
-      '../app/scripts/datasets/datasets-module.js',
-      '../app/scripts/error/error-view.js',
-      '../app/scripts/error/error-controller.js',
-      '../app/scripts/error/error-module.js',
-      'spec/**/*.spec.js'
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/underscore/underscore.js',
+      'bower_components/backbone/backbone.js',
+      'bower_components/backbone.babysitter/lib/backbone.babysitter.js',
+      'bower_components/backbone.wreqr/lib/backbone.wreqr.js',
+      'bower_components/marionette/lib/core/backbone.marionette.js',
+      'bower_components/backbone-fetch-cache/backbone.fetch-cache.js',
+      'bower_components/typeahead.js/dist/typeahead.bundle.js',
+      'bower_components/moment/moment.js',
+      'test/lib/init.js',
+      'app/scripts/app.js',
+      'app/scripts/utils/mapmanager.js',
+      'app/scripts/base/search-view.js',
+      'app/scripts/entities/search-model.js',
+      'app/scripts/app-config.js',
+      'app/scripts/compiled-templates.js',
+      'app/scripts/header-search-view.js',
+      'app/scripts/app-layout.js',
+      'app/scripts/home/home-view.js',
+      'app/scripts/home/home-controller.js',
+      'app/scripts/home/home-module.js',
+      'app/scripts/entities/dataset-model.js',
+      'app/scripts/entities/dataset-collection.js',
+      'app/scripts/results/results-view.js',
+      'app/scripts/results/results-controller.js',
+      'app/scripts/results/results-module.js',
+      'app/scripts/datasets/datasets-view.js',
+      'app/scripts/datasets/datasets-controller.js',
+      'app/scripts/datasets/datasets-module.js',
+      'app/scripts/error/error-view.js',
+      'app/scripts/error/error-controller.js',
+      'app/scripts/error/error-module.js',
+      'test/spec/**/*.spec.js'
     ],
 
 
@@ -59,7 +59,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '../app/scripts/**/*.js': ['coverage']
+      'app/scripts/**/*.js': ['coverage']
     },
 
 
@@ -67,6 +67,10 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['dots', 'beep', 'coverage'],
+
+    coverageReporter: {
+      dir: './test/coverage'
+    },
 
     
     // web server port

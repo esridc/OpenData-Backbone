@@ -12,7 +12,7 @@ gulp.task('styles', function() {
   var sassPaths = ['./bower_components/bootstrap-sass-official/assets/stylesheets'];
   return gulp.src('app/styles/main.scss')
     .pipe(plugins.plumber())
-    .pipe(plugins.sass({includePaths: sassPaths })) 
+    .pipe(plugins.sass({includePaths: sassPaths, errLogToConsole: true })) 
     .pipe(plugins.autoprefixer({browsers: ['last 1 version']}))
     .pipe(gulp.dest('.tmp/styles'));
 });
