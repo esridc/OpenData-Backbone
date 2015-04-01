@@ -70,7 +70,7 @@
           total: this.model.get('record_count'),
           sortField: this.collection.orderBy,
           sortClass: this.collection.orderByAsc ? 'sort_asc' : 'sort_desc',
-          sortIconClass: this.collection.orderByAsc ? 'glyphicon-arrow-down' : 'glyphicon-arrow-up',
+          sortIconClass: this.collection.orderByAsc ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up',
         };
 
         if (this.collection.supportsPagination) {
