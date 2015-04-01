@@ -20,6 +20,8 @@
           hint: false
         };
 
+        //by putting it on app instead of this base view, we can share one instance throughout the app
+        //instead of having one instance per view that needs one
         var bloodhound = App.getBloodhound();
         bloodhound.initialize();
 

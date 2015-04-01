@@ -16,17 +16,17 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
   });
 
   MyOD.on('start', function(options){
+    Backbone.history.on('route', this.layout.setClasses);
+
     if (Backbone.history){
       //if you are hosting on a server that can let the browser handle all the routing,
       //you can use pushstate, otherwise (gh-pages) use hashed urls
       //Backbone.history.start({ pushState: Modernizr.history, root: '/OpenData-Backbone' });
+      //Backbone.history.start returns false if the current url doesn't match a route
       if (!Backbone.history.start({ pushState: false, root: '/OpenData-Backbone' })) {
         MyOD.navigate('404', { trigger:true });
       }
     }
-
-    Backbone.history.on('route', this.layout.setClasses);
-    this.layout.setClasses();
   });
 
   MyOD.navigate = function (route, options) {
@@ -35,8 +35,12 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
   MyOD.search = function (options) {
     var route = MyOD.searchModel.getRoute();
-    MyOD.navigate(route, { trigger:true });
+    MyOD.navigate(route, { trigger: true });
   };
+
+  MyOD.navigateDataset = function (datasetId) {
+    MyOD.navigate('/datasets/' + datasetId, { trigger: true });
+  };  
 
   MyOD.navigate404 = function () {
     MyOD.navigate('404', { trigger: true, replace: true });
@@ -63,6 +67,8 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
     return result;
   };
 
+  //by putting it on app instead of this base view, we can share one instance throughout the app
+  //instead of having one instance per view that needs one
   MyOD.getBloodhound = function () {
     if (!this.bloodhound) {
       this.bloodhound = new Bloodhound({

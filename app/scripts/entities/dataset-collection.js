@@ -5,6 +5,9 @@
     
   MyOD.module('Models', function (Models, App, Backbone, Marionette, $, _) {
           
+    /*
+    * Models a collection of datasets
+    */
     Models.DatasetCollection = Backbone.Collection.extend({
 
       model: Models.DatasetModel,

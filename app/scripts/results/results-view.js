@@ -84,7 +84,7 @@
       },
 
       selectDataset: function (childView, childModel) {
-        App.navigate('/datasets/' + childModel.get('id'), { trigger: true });
+        App.navigateDataset(childModel.get('id'));
       },
 
       onPageClicked: function (e) {

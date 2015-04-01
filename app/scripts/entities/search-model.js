@@ -4,7 +4,10 @@
   'use strict';
     
   MyOD.module('Models', function (Models, App, Backbone, Marionette, $, _) {
-          
+         
+    /*
+    * Models search parameters and uses them to generate search urls
+    */
     Models.SearchModel = Backbone.Model.extend({ 
 
       defaults: {

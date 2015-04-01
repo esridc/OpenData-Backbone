@@ -4,7 +4,10 @@
   'use strict';
     
   MyOD.module('Models', function (Models, App, Backbone, Marionette, $, _) {
-          
+    
+    /*
+    * Models a collection of records in a dataset
+    */
     Models.RowCollection = Backbone.Collection.extend({
 
       initialize: function (attributes, options) {

@@ -15,10 +15,10 @@
 
         switch (errorCode) {
           case 404:
-              template = JST['error/templates/404'];
+            template = JST['error/templates/404'];
             break;
           default:
-              template = JST['error/templates/500'];
+            template = JST['error/templates/500'];
         }
 
         return template;

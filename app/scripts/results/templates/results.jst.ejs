@@ -23,13 +23,13 @@
 <nav>
   <ul class="pagination">
     <% if (pages.length > 1) { %>
-      <li id="page-prev" class="<%= firstPage %>"><a href="<%= prevUrl %>" data-page="<%= prevPage %>"><span aria-hidden="true">&laquo;</span></a></li>
+      <li id="page-prev" class="<%= firstPage %>"><a href="#<%= prevUrl %>" data-page="<%= prevPage %>"><span aria-hidden="true">&laquo;</span></a></li>
       
       <% _.each(pages, function (page) { %>
-        <li class="<%= page.active %>"><a href="<%= page.url %>" class="page-number" data-page="<%= page.page %>"><%= page.page %></a></li>
+        <li class="<%= page.active %>"><a href="#<%= page.url %>" class="page-number" data-page="<%= page.page %>"><%= page.page %></a></li>
       <% }); %>
 
-      <li id="page-next" class="<%= lastPage %>"><a href="<%= nextUrl %>" data-page="<%= nextPage %>"><span aria-hidden="true">&raquo;</span></a></li>
+      <li id="page-next" class="<%= lastPage %>"><a href="#<%= nextUrl %>" data-page="<%= nextPage %>"><span aria-hidden="true">&raquo;</span></a></li>
     <% } %>
   </ul>
 </nav>
