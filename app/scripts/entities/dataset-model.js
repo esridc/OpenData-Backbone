@@ -15,13 +15,14 @@
         name: '',
         description: '',
         tags: [],
-        arcgis_online_item_url: '',
+        landing_page: '',
         owner: '',
         url: '',
         created_at: '',
         updated_at: '',
         views: 0,
-        thumbnail_url: ''
+        thumbnail_url: '',
+        main_group_thumbnail_url: ''
       },
 
       parse: function (response) {

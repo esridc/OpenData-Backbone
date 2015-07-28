@@ -27,8 +27,12 @@
 
       templateHelpers: function () {
         var baseUrl = this.model.url().replace(/.json$/, '');
+        var thumbnailUrl = this.model.get('thumbnail_url');
+        var groupThumbnailUrl = this.model.get('main_group_thumbnail_url');
+        var defaultThumbnailUrl = '/images/default-dataset-thumb.png';
         return {
-          baseUrl: baseUrl 
+          baseUrl: baseUrl,
+          thumbnail_src: thumbnailUrl || groupThumbnailUrl || defaultThumbnailUrl 
         };
       },
 
