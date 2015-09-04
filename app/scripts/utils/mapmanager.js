@@ -2,6 +2,9 @@
     
   'use strict';
 
+  // namespace the esri stuff - there's prolly a better way to do this...
+  var esri = {};
+
   MyOD.module('Utils', function (Utils, App, Backbone, Marionette, $, _) {
 
     Utils.MapManager = Marionette.Object.extend({
@@ -15,15 +18,32 @@
       /**
        * load dojo, resolve a promise when it's ready to roll
        */
-      _loadDojo: function(){
+      _loadDojo: function() {
         var dfd = $.Deferred();
         this.dojoReady = dfd.promise();
         //check if dojo is loaded...
         if( !window.dojo ){
           //if not, inject a script tag, and then require in things
-          include('//js.arcgis.com/3.14compact/init.js', function(){
+          include('//js.arcgis.com/4.0beta1/', function(){
             //now that require is present, load in the other things we need
-            require(['esri/map', 'esri/layers/FeatureLayer', 'dojo/domReady!'], function(Map) {
+            require([
+              'esri/Map',
+              'esri/views/MapView',
+              'esri/layers/FeatureLayer',
+              'esri/widgets/PopupTemplate',
+              'esri/geometry/SpatialReference',
+              'esri/geometry/Extent',
+              'esri/renderers/SimpleRenderer',
+              'dojo/domReady!'
+            ], function(Map, MapView, FeatureLayer, PopupTemplate, SpatialReference, Extent, SimpleRenderer) {
+              esri.Map = Map;
+              esri.MapView = MapView;
+              esri.FeatureLayer = FeatureLayer;
+              esri.PopupTemplate = PopupTemplate;
+              esri.SpatialReference = SpatialReference;
+              esri.Extent = Extent;
+              esri.SimpleRenderer = SimpleRenderer;
+              //, MapView, FeatureLayer, PopupTemplate, SpatialReference, Extent, SimpleRenderer
               dfd.resolve();
             });
           }); 
@@ -33,7 +53,6 @@
           dfd.resolve();
         }
       },
-
 
       onBeforeDestroy: function () {
         if (this.map) {
@@ -48,61 +67,62 @@
       },
 
       createMap: function (mapDiv, options) {
-        var self = this;
-
         var mapOpts = {
-          center: [ -56.049, 38.485 ],
-          zoom: 3,
-          basemap: 'dark-gray',
-          smartNavigation:false,
-          navigationMode: 'css-transforms',
-          fitExtent:true,
-          minZoom: 2,
-          wrapAround180:true
+          basemap: 'dark-gray'
         };
 
-        this.map = new esri.Map(mapDiv, mapOpts);
-        
-        var onLoad = function(opts){
-          opts.map.disableScrollWheelZoom();
-          if (options.coords) {
-            var extent = new esri.geometry.Extent(options.coords[0][0], options.coords[0][1], options.coords[1][0], options.coords[1][1], new esri.SpatialReference({ wkid: 4326 }));
-            opts.map.setExtent(extent, true);
-          }
-          self.proxyEvent('map:load');
+        this.map = new esri.Map(mapOpts);
+
+        var $mapDiv = $('#map');
+
+        var mapViewOpts = {
+          container: 'map',  //reference to the DOM node that will contain the view
+          map: this.map,  //references the map object created in step 3
+          height: $mapDiv.height(),
+          width: $mapDiv.width()
         };
+
+        var extent;
+        if (options.coords) {
+          extent = new esri.Extent(options.coords[0][0], options.coords[0][1], options.coords[1][0], options.coords[1][1], new esri.SpatialReference({ wkid: 4326 }));
+        }
+
+        if (extent) {
+          mapViewOpts.extent = extent;
+        } else {
+          mapViewOpts.center = [ -56.049, 38.485 ];
+          mapViewOpts.zoom = 3;
+        }
+
+        this.mapView = new esri.MapView(mapViewOpts);
 
         //proxy events
-        this.map.on('load', dojo.hitch(this, onLoad));
+        this.map.on('load', dojo.hitch(this, this.proxyEvent, 'map:load'));
         this.map.on('extent-change', dojo.hitch(this, this.proxyEvent, 'map:extent-change'));
         this.map.on('layer-add', dojo.hitch(this, this.proxyEvent, 'map:layer-add'));
       },
 
       getDatasetInfoTemplate: function (dataset) {
-        //var datasetName = dataset.get('name');
-        var displayFieldName = dataset.get('display_field');
-        var title = displayFieldName ? '${' + displayFieldName + '}' : 'Attributes';
-        return new esri.InfoTemplate(title, '${*}');
+        var displayFieldName = dataset.get('displayField');
+        var title = displayFieldName ? '{' + displayFieldName + '}' : 'Attributes';
+        return new esri.PopupTemplate({ title: title, description: '{*}' });
       },
 
       getDatasetLayerOpts: function (dataset) {
-        var opts = 
-         { 
-          mode: esri.layers.FeatureLayer.MODE_AUTO,
-          outFields: '*',
-          infoTemplate: this.getDatasetInfoTemplate(dataset),
-          geometryType: dataset.get('geometry_type')
+        var opts = {
+          minScale: 0,
+          maxScale: 0,
+          outFields: ['*'],
+          popupTemplate: this.getDatasetInfoTemplate(dataset),
+          renderer: this.getRenderer(dataset)
         };
+        
         return opts;
       },
 
       addDataset: function (dataset) {
         var opts = this.getDatasetLayerOpts(dataset);
-        this.datasetLayer = new esri.layers.FeatureLayer(dataset.get('url'), opts);
-        //apply default renderer
-        this.datasetLayer.setRenderer(this._getRenderer(opts));
-
-        this.datasetLayer.on('load', this.onLoadDataset);
+        this.datasetLayer = new esri.FeatureLayer(dataset.get('url'), opts);
 
         //proxy events
         this.datasetLayer.on('load', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:load'));
@@ -110,13 +130,7 @@
         this.datasetLayer.on('query-limit-exceeded', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:query-limit-exceeded'));
         this.datasetLayer.on('update-end', dojo.hitch(this, this.proxyEvent, 'map:datasetlayer:update-end'));
 
-        this.map.addLayer(this.datasetLayer);
-      },
-
-      onLoadDataset: function (evt) {
-        //squash scale ranges - we need the layer to draw at all scales
-        evt.layer.minScale = 0; 
-        evt.layer.maxScale = 0;
+        this.map.add(this.datasetLayer);
       },
 
       /**
@@ -126,10 +140,11 @@
        * @param {Object} layerOptions Json hash of layer properties. Either from a webmap
        * or constructed for a layer in a feature service
        */
-      _getRenderer: function(layerOptions){
+      getRenderer: function(dataset){
+          var geometryType = dataset.get('geometryType');
           var renderer;
 
-          switch (layerOptions.geometryType){
+          switch (geometryType){
               case 'esriGeometryPolygon':
                   renderer = this._createRendererFromJson(util.defaults.defaultPolygonRenderer);
                   break;
@@ -153,7 +168,7 @@
       },
 
       _createRendererFromJson: function(rendererJson){
-          return new esri.renderer.SimpleRenderer(rendererJson);
+          return new esri.SimpleRenderer(rendererJson);
       }
 
       
