@@ -2,10 +2,10 @@
 (function () {
 
   'use strict';
-    
+
   MyOD.module('ResultsModule', function (ResultsModule, App, Backbone, Marionette, $, _) {
 
-    ResultsModule.ItemView = Marionette.ItemView.extend({ 
+    ResultsModule.ItemView = Marionette.ItemView.extend({
 
       template: JST['results/templates/results-item'],
 
@@ -23,7 +23,7 @@
 
     });
 
-    ResultsModule.LoadingView = Marionette.ItemView.extend({ 
+    ResultsModule.LoadingView = Marionette.ItemView.extend({
 
       template: JST['results/templates/results-loading'],
 
@@ -33,7 +33,7 @@
 
     });
 
-    ResultsModule.EmptyView = Marionette.ItemView.extend({ 
+    ResultsModule.EmptyView = Marionette.ItemView.extend({
 
       template: JST['results/templates/results-empty'],
 
@@ -41,7 +41,7 @@
 
     });
 
-    ResultsModule.View = Marionette.CompositeView.extend({ 
+    ResultsModule.View = Marionette.CompositeView.extend({
 
       initialize: function () {
         this.listenTo(this, 'childview:result:clicked', this.selectDataset);
@@ -68,7 +68,7 @@
       },
 
       modelEvents: {
-        'change:total_count': 'render'
+        'change:totalCount': 'render'
       },
 
       collectionEvents: {
@@ -105,13 +105,13 @@
         //serialize the model into what we need for the template
         var info = App.searchModel.toJSON();
 
-        var len = Math.round(info.total_count);
+        var len = Math.round(info.totalCount);
         var page = +info.page;
         var from = (page === 0) ? page + 1 : page;
         var size = info.per_page;
         var total_pages = Math.ceil(len / size);
         var pages = [];
-        
+
         //don't show more than 10?
         var start = ( total_pages > 10 && from > 6 ) ? from - 5 : 1;
         var end = ( total_pages > start + 9 ) ? start + 9 : total_pages;
@@ -127,7 +127,7 @@
 
         var prevUrl = this.model.getRoute(false);
         var prevPage = page;
-        if (from !== 1) { 
+        if (from !== 1) {
           prevPage = page-1;
           searchModel.set('page', prevPage);
           prevUrl = searchModel.getUrl();

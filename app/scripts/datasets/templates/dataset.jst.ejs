@@ -1,5 +1,5 @@
 <div class="clearfix">
-  <h2 class="pull-left clearfix"><img class="img-thumbnail" src="<%= thumbnail_src %>"><span><%= name %></span></h2>
+  <h2 class="pull-left clearfix"><img class="img-thumbnail" src="<%= thumbnailSrc %>"><span><%= name %></span></h2>
   <div class="dropdown pull-right">
     <button class="btn btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Download
@@ -10,7 +10,7 @@
       <li><a href="<%= baseUrl %>.kml" target="_blank" download>KML</a></li>
       <li><a href="<%= baseUrl %>.zip" target="_blank" download>Shapefile</a></li>
       <li class="divider"></li>
-      <li><a href="<%= landing_page %>" target="_blank">View in ArcGIS Online</a></li>
+      <li><a href="<%= landingPage %>" target="_blank">View in ArcGIS Online</a></li>
       <li><a href="<%= url %>" target="_blank">API</a></li>
     </ul>
   </div>
@@ -21,23 +21,23 @@
     <div class="col-lg-6 col-md-6">
       <h4>Description</h4>
       <p><%= description %></p>
-      
+
     </div>
     <div class="col-lg-6 col-md-6">
       <dl class="dl-horizontal">
-        
+
         <dt>Owner:</dt>
         <dd><%= owner %></dd>
 
         <dt>Created:</dt>
-        <dd><%= moment(created_at).calendar() %></dd>
-        
+        <dd><%= moment(createdAt).calendar() %></dd>
+
         <dt>Updated:</dt>
-        <dd><%= moment(updated_at).calendar() %></dd>
+        <dd><%= moment(updatedAt).calendar() %></dd>
 
         <dt>Tags:</dt>
         <dd><%= tags.join(' | ') %></dd>
-        
+
         <dt>Views:</dt>
         <dd><%= views %></dd>
 

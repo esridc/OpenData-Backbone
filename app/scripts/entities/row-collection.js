@@ -2,9 +2,9 @@
 (function () {
 
   'use strict';
-    
+
   MyOD.module('Models', function (Models, App, Backbone, Marionette, $, _) {
-    
+
     /*
     * Models a collection of records in a dataset
     */
@@ -12,11 +12,11 @@
 
       initialize: function (attributes, options) {
         this.dataset = options.dataset;
-        
-        var queryCapabilities = this.dataset.get('advanced_query_capabilities');
-        this.supportsPagination = queryCapabilities && queryCapabilities.supports_pagination;
 
-        this.orderBy = this.dataset.get('object_id_field');
+        var queryCapabilities = this.dataset.get('advancedQueryCapabilities');
+        this.supportsPagination = queryCapabilities && queryCapabilities.supportsPagination;
+
+        this.orderBy = this.dataset.get('objectIdField');
       },
 
       perPage: 10,
@@ -36,9 +36,9 @@
         if (this.supportsPagination) {
           url += '&resultOffset=' + this.page * this.perPage;
           url += '&resultRecordCount=' + this.perPage;
-          //NOTE: when you pass in one of the above two parameters and orderByFields is left empty, 
-          //map service uses the object-id field to sort the result. 
-          //For a query layer with a pseudo column as the object-id field (e.g., FID), 
+          //NOTE: when you pass in one of the above two parameters and orderByFields is left empty,
+          //map service uses the object-id field to sort the result.
+          //For a query layer with a pseudo column as the object-id field (e.g., FID),
           //you must provide orderByFields; otherwise the query fails
         }
 
@@ -46,7 +46,7 @@
         if (!this.orderByAsc) {
           orderBy += ' desc';
         }
-        //NOTE: this still could fail 
+        //NOTE: this still could fail
         //if the oid field has changed since it was harvested by open data
         //or it is null (which should not happen...)
         url += '&orderByFields=' + orderBy;
@@ -63,7 +63,7 @@
         // this.fieldAliases = resp.fieldAliases;
         var rows = resp.features;
         if (!this.supportsPagination) {
-          //this is slightly crappy but 
+          //this is slightly crappy but
           //for datasets that don't support pagination
           //we just show the first n rows with no pagination
           //even though we got maxRecordCount rows
