@@ -2,9 +2,9 @@
 (function () {
 
   'use strict';
-    
+
   MyOD.module('DatasetsModule', function (DatasetsModule, App, Backbone, Marionette, $, _) {
-          
+
     DatasetsModule.View = Marionette.ItemView.extend({
 
       initialize: function (options) {
@@ -26,13 +26,12 @@
       },
 
       templateHelpers: function () {
-        var baseUrl = this.model.url().replace(/.json$/, '');
-        var thumbnailUrl = this.model.get('thumbnail_url');
-        var groupThumbnailUrl = this.model.get('main_group_thumbnail_url');
+        var baseUrl = this.model.url().replace(/.json$/, '').replace('/api/v2', '');
+        var thumbnailUrl = this.model.get('thumbnailUrl');
         var defaultThumbnailUrl = 'images/default-dataset-thumb.png';
         return {
           baseUrl: baseUrl,
-          thumbnail_src: thumbnailUrl || groupThumbnailUrl || defaultThumbnailUrl 
+          thumbnailSrc: thumbnailUrl || defaultThumbnailUrl
         };
       },
 
@@ -46,7 +45,7 @@
       // },
 
       onDomRefresh: function () {
-        if (this.model.get('item_type').toLowerCase() !== 'table') {
+        if (this.model.get('itemType').toLowerCase() !== 'table') {
           var self = this;
           // TODO: would be nice to encapsulate this in mapmanager so consumers wouldn't have to know to do it
           this.ui.mapDiv.show();
@@ -64,14 +63,14 @@
 
         if (numerics.length){
 
-          // select the first attr to map 
+          // select the first attr to map
           // we could put some logic around which to use here
           this.fieldName = this.fieldName || numerics[0].name;
-          
+
           //get stats for selected attribute
           var fields = this.model.get('fields');
           this.stats = this.getStats(fields, this.fieldName);
-          this.type = this.getGeometryType(this.model.get('geometry_type'));
+          this.type = this.getGeometryType(this.model.get('geometryType'));
 
 
           var yukiOptions = {
@@ -132,13 +131,13 @@
 
         //TODO: move this into mapmanager
         return esri.styles[styleType].getSchemes({
-          theme: theme, 
-          basemap: 'dark-gray', 
+          theme: theme,
+          basemap: 'dark-gray',
           geometryType: self.type
         });
       },
 
-      // handler for attr change 
+      // handler for attr change
       changeAttribute: function (fieldName) {
         //update stats for selected attribute
         var fields = this.model.get('fields');
@@ -164,11 +163,11 @@
           statistics: this.stats,
           type: this.type
         };
-      
+
         if (scheme){
           opts.scheme = scheme;
         }
-        
+
         var foo = App.reqres.request('smaps:update:style', opts)
           .done(function(renderer){
             if (self.type === 'point'){
@@ -181,7 +180,7 @@
         this.mapManager.destroy();
         this.tableView.destroy();
       }
-      
+
     });
 
   });

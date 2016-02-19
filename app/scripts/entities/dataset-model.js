@@ -2,9 +2,9 @@
 (function () {
 
   'use strict';
-    
+
   MyOD.module('Models', function (Models, App, Backbone, Marionette, $, _) {
-          
+
     /*
     * Models a dataset
     */
@@ -15,22 +15,25 @@
         name: '',
         description: '',
         tags: [],
-        landing_page: '',
+        landingPage: '',
+        recordCount: '',
+        itemType: '',
         owner: '',
         url: '',
-        created_at: '',
-        updated_at: '',
+        createdAt: '',
+        updatedAt: '',
         views: 0,
-        thumbnail_url: '',
-        main_group_thumbnail_url: ''
+        thumbnailUrl: ''
       },
 
       parse: function (response) {
-        return response.data || response;
+        // map it from jsonapi back to what backbone expects
+        var resp = response.data || response;
+        return _.extend({id: resp.id}, resp.attributes);
       },
 
       url: function () {
-        return MyOD.config.api + 'datasets/' + this.get('id') + '.json';
+        return MyOD.config.api + 'datasets/' + this.get('id');
       },
 
       getNumericFields: function () {

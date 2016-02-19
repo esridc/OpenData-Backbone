@@ -40,7 +40,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
   MyOD.navigateDataset = function (datasetId) {
     MyOD.navigate('/datasets/' + datasetId, { trigger: true });
-  };  
+  };
 
   MyOD.navigate404 = function () {
     MyOD.navigate('404', { trigger: true, replace: true });
@@ -53,7 +53,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
 
     if (q) {
       var pairs = q.split('&');
-      
+
       _.each(pairs, function(pair) {
         pair = pair.split('=');
         if (pair[0] === 'q') {
@@ -76,7 +76,7 @@ if (!this.MyOD || typeof this.MyOD !== 'object') {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         limit: 10,
         remote: {
-          url: MyOD.config.api + 'datasets/autocomplete.json?query=%QUERY',
+          url: MyOD.config.api.replace('/api/v2', '') + 'datasets/autocomplete.json?query=%QUERY',
           rateLimitWait: 150,
           replace: function (url, query) {
             return url.replace('%QUERY', query);

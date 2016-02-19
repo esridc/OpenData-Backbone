@@ -2,10 +2,10 @@
 (function () {
 
   'use strict';
-    
+
   MyOD.module('DatasetsModule', function (DatasetsModule, App, Backbone, Marionette, $, _) {
-         
-    DatasetsModule.TableRowView = Marionette.ItemView.extend({ 
+
+    DatasetsModule.TableRowView = Marionette.ItemView.extend({
 
       initialize: function (options) {
         this.dataset = options.dataset;
@@ -67,14 +67,14 @@
           showPagination: false,
           from: 1,
           to: this.collection.perPage,
-          total: this.model.get('record_count'),
+          total: this.model.get('recordCount'),
           sortField: this.collection.orderBy,
           sortClass: this.collection.orderByAsc ? 'sort_asc' : 'sort_desc',
           sortIconClass: this.collection.orderByAsc ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up',
         };
 
         if (this.collection.supportsPagination) {
-          var totalPages = Math.ceil(this.model.get('record_count') / this.collection.perPage);
+          var totalPages = Math.ceil(this.model.get('recordCount') / this.collection.perPage);
           //zero based page index
           var page = this.collection.page;
 
@@ -88,7 +88,7 @@
             pages.push({ page: i, active: active });
           }
 
-          var total = this.model.get('record_count');
+          var total = this.model.get('recordCount');
           var from = page * this.collection.perPage + 1;
           var to = page * this.collection.perPage + this.collection.perPage;
           to = (to <= total) ? to : total;
@@ -137,7 +137,7 @@
           this.collection.fetch({ reset: true });
         }
       }
-      
+
     });
 
   });
