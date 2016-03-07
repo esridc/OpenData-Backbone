@@ -3,5 +3,5 @@ MyOD.config = {
   //api: '//data3.dc.opendataqa.arcgis.com/'
   //api: '//umb.dcdev.staging.datacommunity.io/'
   //api: '//clt.charlotte.opendata.arcgis.com/'
-  api: 'https://opendataqa.arcgis.com/api/v2/'
+  api: 'https://opendata.arcgis.com/api/v2/'
 };
